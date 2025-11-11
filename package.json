@@ -1,0 +1,56 @@
+{
+  "name": "28-a-blackout-timeline",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "Full timeline of the blackout that affected Spain and Portugal on April 28, 2025.",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "author": "macolmenerori",
+  "license": "MIT",
+  "packageManager": "pnpm@10.21.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/macolmenerori/28-a-blackout-timeline"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "prettify": "prettier -w --log-level=silent src/",
+    "preview": "vite preview",
+    "lint": "eslint --fix ./src/",
+    "types": "tsc --noEmit",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "blackout",
+    "timeline",
+    "spain",
+    "portugal",
+    "electricity",
+    "power"
+  ],
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/react": "^19.2.3",
+    "@types/react-dom": "^19.2.2",
+    "@vitejs/plugin-react": "^5.1.0",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-jest-dom": "^5.5.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "eslint-plugin-testing-library": "^7.13.3",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.4",
+    "vite": "^7.2.2"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  }
+}
