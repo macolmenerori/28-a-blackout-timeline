@@ -32,6 +32,8 @@
   ],
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@types/node": "^24.10.1",
     "@types/react": "^19.2.3",
     "@types/react-dom": "^19.2.2",
     "@vitejs/plugin-react": "^5.1.0",
@@ -44,12 +46,19 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-testing-library": "^7.13.3",
+    "jest": "^30.2.0",
     "prettier": "^3.6.2",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.4",
-    "vite": "^7.2.2"
+    "vite": "^7.2.2",
+    "vite-tsconfig-paths": "^5.1.4"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@fontsource/roboto": "^5.2.8",
+    "@mui/icons-material": "^7.3.5",
+    "@mui/material": "^7.3.5",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   }
