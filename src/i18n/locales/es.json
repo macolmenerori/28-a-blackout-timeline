@@ -1,0 +1,16 @@
+{
+  "app": {
+    "title": "Cronología del Apagón del 28-A"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "close": "Cerrar"
+  },
+  "languages": {
+    "es": "ES",
+    "en": "EN"
+  }
+}
