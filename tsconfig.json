@@ -8,11 +8,11 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "moduleResolution": "bundler",
+    "noEmit": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "outDir": "./build/",
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": true,
@@ -25,6 +25,6 @@
     },
     "types": ["node", "react", "react-dom", "jest", "@testing-library/jest-dom"]
   },
-  "exclude": ["node_modules", "build", "cypress"],
+  "exclude": ["node_modules", "dist", "cypress"],
   "include": ["src/**/*.ts", "src/**/*.tsx"]
 }
