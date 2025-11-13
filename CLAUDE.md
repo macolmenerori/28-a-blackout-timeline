@@ -16,6 +16,7 @@ This project documents the full timeline of the blackout that affected Spain and
 - **Styling**: Emotion (CSS-in-JS) 11.14.0
 - **Icons**: Material UI Icons 7.3.5
 - **Font**: Roboto (via @fontsource/roboto 5.2.8)
+- **Internationalization**: i18next 25.6.2 + react-i18next 16.3.1
 
 ## Project Structure
 
@@ -28,6 +29,15 @@ This project documents the full timeline of the blackout that affected Spain and
 │   ├── index.css                           # Global styles
 │   ├── providers/
 │   │   └── AppProviders.tsx                # Root provider combining all providers
+│   ├── components/
+│   │   └── Header/
+│   │       └── Header.tsx                  # Header with theme toggle & language selector
+│   ├── i18n/
+│   │   ├── i18n.ts                         # i18n configuration & initialization
+│   │   ├── I18nContext.tsx                 # i18n context & provider
+│   │   └── locales/
+│   │       ├── en.json                     # English translations
+│   │       └── es.json                     # Spanish translations (default)
 │   └── ui/
 │       ├── theme/
 │       │   ├── theme.ts                    # Theme configuration & palettes
@@ -174,10 +184,11 @@ const { mode, toggleTheme } = useTheme();
 ### Provider Composition
 
 **Order (outside to inside):**
-1. `ThemeProvider` - Theme context and MUI theme
-2. `CssBaseline` - MUI global style reset
-3. `MainLayoutProvider` - Layout container
-4. Application content
+1. `I18nProvider` - Internationalization context
+2. `ThemeProvider` - Theme context and MUI theme
+3. `CssBaseline` - MUI global style reset
+4. `MainLayoutProvider` - Layout container
+5. Application content
 
 **Location:** `src/providers/AppProviders.tsx`
 
@@ -231,6 +242,142 @@ function StyledComponent() {
 - ✅ Accessibility built-in (proper contrast ratios)
 - ✅ CSS-in-JS via Emotion
 
+## Internationalization (i18n) System
+
+The application implements a comprehensive internationalization system supporting Spanish (default) and English using i18next.
+
+### Architecture
+
+The i18n system consists of three main parts:
+
+1. **i18n Configuration** (`src/i18n/i18n.ts`)
+   - Initializes i18next with react-i18next bindings
+   - Configures browser language detection
+   - Imports and registers translation resources
+   - Sets Spanish ('es') as the fallback language
+
+2. **i18n Context** (`src/i18n/I18nContext.tsx`)
+   - Provides language state management
+   - Handles language persistence (localStorage)
+   - Exports `I18nProvider` component and `useI18n()` hook
+
+3. **Translation Files** (`src/i18n/locales/`)
+   - `es.json` - Spanish translations (default)
+   - `en.json` - English translations
+   - JSON structure with nested keys for organization
+
+### i18n Configuration Details
+
+**Dependencies:**
+- `i18next` (v25.6.2) - Core i18n framework
+- `react-i18next` (v16.3.1) - React bindings for i18next
+- `i18next-browser-languagedetector` (v8.2.0) - Automatic language detection
+
+**Configuration:**
+- Fallback language: Spanish ('es')
+- Namespace: 'translation' (default)
+- Detection order: localStorage → browser language → fallback
+
+### i18n Context Features
+
+**Initial Language Detection:**
+1. Checks `localStorage` for saved preference (key: 'app-language')
+2. Falls back to i18next detected language
+3. Defaults to 'es' (Spanish) if no preference found
+
+**Language Persistence:**
+- Automatically saves language choice to `localStorage`
+- Persists across browser sessions
+
+**Custom Hook:**
+```typescript
+const { language, changeLanguage } = useI18n();
+// language: 'es' | 'en'
+// changeLanguage: (lang: 'es' | 'en') => void
+```
+
+### Translation Structure
+
+Translations are organized in JSON files with nested keys:
+
+```json
+{
+  "app": {
+    "title": "Cronología del Apagón del 28-A"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "close": "Cerrar"
+  },
+  "languages": {
+    "es": "ES",
+    "en": "EN"
+  }
+}
+```
+
+### Usage Examples
+
+**Using translations in components:**
+```typescript
+import { useTranslation } from 'react-i18next';
+
+function MyComponent() {
+  const { t } = useTranslation();
+
+  return (
+    <div>
+      <h1>{t('app.title')}</h1>
+      <button>{t('common.save')}</button>
+    </div>
+  );
+}
+```
+
+**Changing language:**
+```typescript
+import { useI18n } from '@/i18n/I18nContext';
+
+function LanguageSwitcher() {
+  const { language, changeLanguage } = useI18n();
+
+  return (
+    <button onClick={() => changeLanguage(language === 'es' ? 'en' : 'es')}>
+      {language.toUpperCase()}
+    </button>
+  );
+}
+```
+
+**With interpolation:**
+```typescript
+// Translation: "welcome": "Welcome, {{name}}!"
+const { t } = useTranslation();
+return <p>{t('welcome', { name: 'User' })}</p>;
+```
+
+### Integration with Header Component
+
+The Header component (`src/components/Header/Header.tsx`) includes:
+- Language selector dropdown (ES/EN)
+- Integrated with `useI18n()` hook
+- Syncs with i18n system and localStorage
+- Theme toggle switch (from @macolmenerori/component-library)
+
+### Key Features
+
+- ✅ Full Spanish and English support
+- ✅ Spanish as default language
+- ✅ User preference persistence (localStorage)
+- ✅ Automatic browser language detection
+- ✅ Dynamic language switching without page reload
+- ✅ Type-safe throughout (TypeScript)
+- ✅ Clean architecture with separated concerns
+- ✅ Integrated language selector in Header
+
 ## Next Steps
 
 Consider adding:
@@ -239,5 +386,6 @@ Consider adding:
 - Data structure for blackout events
 - Testing framework (Vitest, React Testing Library)
 - API integration for event data
-- Theme toggle button in the UI
+- Additional translations for new components and features
 - Additional Material UI components as needed
+- SEO optimization with react-helmet or similar

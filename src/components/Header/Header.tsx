@@ -1,18 +1,18 @@
-import { useState } from 'react';
-
 import { ThemeSwitch } from '@macolmenerori/component-library';
 import { AppBar, Box, MenuItem, Select, SelectChangeEvent, Toolbar } from '@mui/material';
 
+import { useI18n } from '@/i18n/I18nContext';
 import { useTheme } from '@/ui/theme/ThemeContext';
 
 export function Header() {
   const { mode, toggleTheme } = useTheme();
-  // TODO: Connect to i18n when implemented
-  const [language, setLanguage] = useState<string>('ES');
+  const { language, changeLanguage } = useI18n();
 
   const handleLanguageChange = (event: SelectChangeEvent<string>) => {
-    setLanguage(event.target.value);
-    // TODO: Integrate with i18n to change application language
+    const newLang = event.target.value.toLowerCase();
+    if (newLang === 'es' || newLang === 'en') {
+      changeLanguage(newLang);
+    }
   };
 
   const handleThemeChange = (isDark: boolean) => {
@@ -55,7 +55,7 @@ export function Header() {
           />
 
           <Select
-            value={language}
+            value={language.toUpperCase()}
             onChange={handleLanguageChange}
             size="small"
             sx={{

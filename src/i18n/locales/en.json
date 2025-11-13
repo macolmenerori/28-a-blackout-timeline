@@ -1,0 +1,16 @@
+{
+  "app": {
+    "title": "28-A Blackout Timeline"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close"
+  },
+  "languages": {
+    "es": "ES",
+    "en": "EN"
+  }
+}
