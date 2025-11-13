@@ -17,6 +17,9 @@ importers:
       '@fontsource/roboto':
         specifier: ^5.2.8
         version: 5.2.8
+      '@macolmenerori/component-library':
+        specifier: ^0.0.1
+        version: 0.0.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@mui/icons-material':
         specifier: ^7.3.5
         version: 7.3.5(@mui/material@7.3.5(@emotion/react@11.14.0(@types/react@19.2.3)(react@19.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.3)(react@19.2.0))(@types/react@19.2.3)(react@19.2.0))(@types/react@19.2.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(@types/react@19.2.3)(react@19.2.0)
@@ -665,6 +668,13 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
+
+  '@macolmenerori/component-library@0.0.1':
+    resolution: {integrity: sha512-o5HQxbpGn9JyqAMdEOjkX4f7BIiQUS2lXJj1TuaO1fFVt0lBbXaXfcJ6eJe6kp1Y7afHe9FeNWaiYI/5kFEneg==}
+    engines: {node: '>=24.0.0 <25.0.0'}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
 
   '@mui/core-downloads-tracker@7.3.5':
     resolution: {integrity: sha512-kOLwlcDPnVz2QMhiBv0OQ8le8hTCqKM9cRXlfVPL91l3RGeOsxrIhNRsUt3Xb8wb+pTVUolW+JXKym93vRKxCw==}
@@ -3570,6 +3580,11 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
+
+  '@macolmenerori/component-library@0.0.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+    dependencies:
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
 
   '@mui/core-downloads-tracker@7.3.5': {}
 
