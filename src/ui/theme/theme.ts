@@ -5,15 +5,25 @@ import { createTheme, Theme } from '@mui/material/styles';
 export const lightPalette = {
   primary: {
     main: '#1976d2',
-    light: '#42a5f5',
-    dark: '#1565c0',
+    light: '#4ca9ff',
+    dark: '#00439f',
     contrastText: '#ffffff'
   },
   secondary: {
-    main: '#26a69a',
-    light: '#4db6ac',
-    dark: '#00695c',
+    main: '#dc004e',
     contrastText: '#ffffff'
+  },
+  error: {
+    main: '#f44336'
+  },
+  warning: {
+    main: '#ff9800'
+  },
+  info: {
+    main: '#2196f3'
+  },
+  success: {
+    main: '#4caf50'
   },
   background: {
     default: '#fafafa',
@@ -30,20 +40,30 @@ export const lightPalette = {
 // Define the color palette for dark mode
 export const darkPalette = {
   primary: {
-    main: '#90caf9',
-    light: '#e3f2fd',
-    dark: '#42a5f5',
+    main: '#ffa726',
+    light: '#ffda59',
+    dark: '#cc7400',
     contrastText: 'rgba(0, 0, 0, 0.87)'
   },
   secondary: {
-    main: '#4db6ac',
-    light: '#b2dfdb',
-    dark: '#26a69a',
+    main: '#f48fb1',
     contrastText: 'rgba(0, 0, 0, 0.87)'
   },
+  error: {
+    main: '#f44336'
+  },
+  warning: {
+    main: '#ff9800'
+  },
+  info: {
+    main: '#29b6f6'
+  },
+  success: {
+    main: '#66bb6a'
+  },
   background: {
-    default: '#121212',
-    paper: '#1e1e1e'
+    default: '#1a2332',
+    paper: '#27303f'
   },
   text: {
     primary: '#ffffff',
@@ -56,7 +76,7 @@ export const darkPalette = {
 // Common theme settings regardless of light/dark mode
 export const commonThemeSettings = {
   typography: {
-    fontFamily: ['Roboto', 'Arial', 'sans-serif'].join(','),
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     h1: {
       fontSize: '2.5rem',
       fontWeight: 500
