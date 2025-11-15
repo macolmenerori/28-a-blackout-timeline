@@ -1,4 +1,5 @@
 import { Header } from './components/Header/Header';
+import { Intro } from './components/Intro/Intro';
 import { AppProviders } from './providers/AppProviders';
 
 export function App() {
@@ -6,6 +7,7 @@ export function App() {
     <AppProviders>
       <div className="App">
         <Header />
+        <Intro />
       </div>
     </AppProviders>
   );
