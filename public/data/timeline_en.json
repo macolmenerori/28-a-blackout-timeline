@@ -1,0 +1,519 @@
+[
+  {
+    "fullTimestamp": "2025-04-28T00:00:00.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "00:00:00.000",
+    "endTime": "05:59:59.999",
+    "title": "Stable system - Night operation",
+    "events": ["Voltages with normal variability (<5 kV)", "Typical night operation values"]
+  },
+  {
+    "fullTimestamp": "2025-04-28T06:00:00.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "06:00:00.000",
+    "endTime": "06:00:00.000",
+    "title": "Scheduled change in France interconnection",
+    "events": [
+      "Reduction of export from 2,590 MW to 1,600 MW",
+      "Total reduction: 990 MW",
+      "Voltage variations detected at all 400 kV pilot nodes"
+    ]
+  },
+  {
+    "fullTimestamp": "2025-04-28T06:00:00.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "06:00:00.000",
+    "endTime": "08:00:00.000",
+    "title": "General voltage reduction",
+    "events": ["Cause: Natural increase in morning demand", "Expected behavior"]
+  },
+  {
+    "fullTimestamp": "2025-04-28T09:02:00.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "09:02:00.000",
+    "endTime": "09:02:00.000",
+    "title": "Significant frequency deviation",
+    "events": [
+      "Deviation of -148 mHz",
+      "Cause: Changes in international programs in Europe",
+      "Countries involved: France, Italy, Germany"
+    ]
+  },
+  {
+    "fullTimestamp": "2025-04-28T09:00:00.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "09:00:00.000",
+    "endTime": "10:30:00.000",
+    "title": "Increase in voltage variability",
+    "events": ["Growing variability without significant excursions initially"]
+  },
+  {
+    "fullTimestamp": "2025-04-28T09:10:00.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "09:10:00.000",
+    "endTime": "09:10:00.000",
+    "title": "Incident at generation plant in Cáceres",
+    "events": [
+      "Voltage at point: 404-412 kV (within parameters)",
+      "No apparent relation to later event"
+    ]
+  },
+  {
+    "fullTimestamp": "2025-04-28T10:30:00.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "10:30:00.000",
+    "endTime": "10:32:00.000",
+    "title": "First significant voltage excursion - Minor oscillation #3",
+    "events": [
+      "Variations of greater amplitude compared to standard values",
+      "Frequency: 0.2 Hz",
+      "Amplitude up to 4 kV peak-to-peak"
+    ]
+  },
+  {
+    "fullTimestamp": "2025-04-28T11:03:00.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "11:03:00.000",
+    "endTime": "11:09:00.000",
+    "title": "Minor oscillation #4",
+    "events": [
+      "Frequency: 0.2 Hz",
+      "Amplitude: up to 7 kV peak-to-peak",
+      "Damping duration: ~6 minutes",
+      "Power oscillations at interconnection"
+    ]
+  },
+  {
+    "fullTimestamp": "2025-04-28T11:08:00.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "11:08:00.000",
+    "endTime": "11:08:00.000",
+    "title": "REE couples PINAR - TAJO line",
+    "events": ["Connection of 400 kV line to increase damping"]
+  },
+  {
+    "fullTimestamp": "2025-04-28T11:17:00.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "11:17:00.000",
+    "endTime": "11:17:00.000",
+    "title": "REE couples ARCOS - CABRA line",
+    "events": ["Connection of 400 kV line to increase damping"]
+  },
+  {
+    "fullTimestamp": "2025-04-28T11:20:00.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "11:20:00.000",
+    "endTime": "11:20:00.000",
+    "title": "REE couples PIEROLA - VANDELLOS line",
+    "events": ["Connection of 400 kV line to increase damping"]
+  },
+  {
+    "fullTimestamp": "2025-04-28T11:23:00.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "11:23:00.000",
+    "endTime": "11:25:00.000",
+    "title": "Minor oscillation #5",
+    "events": ["Frequency: 0.2 Hz", "Amplitude: ~6 kV peak-to-peak", "Damping duration: 2 minutes"]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:03:00.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:03:00.000",
+    "endTime": "12:07:42.000",
+    "title": "FIRST MAJOR OSCILLATION",
+    "events": [
+      "Frequency: 0.6 Hz (unusually high)",
+      "Amplitude: 70 mHz",
+      "Total duration: 4 minutes 42 seconds",
+      "Maximum amplitude at Carmona (Andalusia)",
+      "Almaraz 400kV - amplitude 31.2 kV peak-to-peak",
+      "Arroyo de San Serván 400kV - amplitude 32.7 kV peak-to-peak",
+      "Detected in Portugal with significant amplitude",
+      "Detected in France: Tavel (out of phase with Carmona), Loony, Albertville",
+      "Detected in Germany: Freiburg (smaller amplitude)",
+      "Minimum voltage at Almaraz falls below 375 kV",
+      "Origin identified within Iberian peninsula"
+    ]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:04:00.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:04:00.000",
+    "endTime": "12:04:00.000",
+    "title": "REE-RTE France contact",
+    "events": ["Application of joint protocol", "Request for reduction of exchange"]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:06:00.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:06:00.000",
+    "endTime": "12:06:00.000",
+    "title": "REE-RTE agreement for HVDC modification",
+    "events": ["Agreement for change of HVDC link operation mode"]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:07:00.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:07:00.000",
+    "endTime": "12:07:00.000",
+    "title": "Multiple stabilization measures",
+    "events": [
+      "Application of France export reduction: -800 MW",
+      "New program: 1,500 MW export (until 13:00)",
+      "REE connects 3 additional 400 kV lines",
+      "12:03 oscillation begins to dampen"
+    ]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:08:00.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:08:00.000",
+    "endTime": "12:08:00.000",
+    "title": "Connection of additional lines",
+    "events": [
+      "REE connects 2 additional 400 kV lines",
+      "Total: 5 new lines connected to improve damping"
+    ]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:11:00.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:11:00.000",
+    "endTime": "12:11:00.000",
+    "title": "HVDC mode change with France",
+    "events": [
+      "From: AC Mode (Pmode 3 - AC emulation)",
+      "To: DC Mode (Pmode 1 - constant power)",
+      "Fixed setpoint: 1,000 MW export (2 x 500 MW)"
+    ]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:15:00.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:15:00.000",
+    "endTime": "12:15:00.000",
+    "title": "REE requests REN Portugal reduce exchange",
+    "events": [
+      "Request: Lower to 2,000 MW export",
+      "REN requests to maintain 2,500 MW in current hour",
+      "Agreement: Reduction to apply from 13:00"
+    ]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:16:45.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:16:45.000",
+    "endTime": "12:16:45.000",
+    "title": "0.6 Hz oscillation reappears",
+    "events": ["Amplitude: ~30 mHz (less than half of the previous)"]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:19:00.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:19:00.000",
+    "endTime": "12:30:00.000",
+    "title": "SECOND MAJOR OSCILLATION",
+    "events": [
+      "Frequency: 0.2 Hz (more typical but large amplitude)",
+      "Superposition with 0.6 Hz oscillation",
+      "System shows critically low damping",
+      "Greater system vulnerability detected"
+    ]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:20:00.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:20:00.000",
+    "endTime": "12:30:00.000",
+    "title": "Attempts to stabilize the system",
+    "events": [
+      "Multiple calls from agents to System Operator",
+      "Highly meshed network (10 additional circuits connected since 11:10)",
+      "Limited flows at interconnections",
+      "France HVDC in fixed DC mode",
+      "Lower flexibility for voltage control"
+    ]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:30:00.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:30:00.000",
+    "endTime": "12:30:00.000",
+    "title": "New reduction of exports to France",
+    "events": ["Additional reduction: -200 MW", "New total: 1,300 MW export (until 14:00)"]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:31:00.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:31:00.000",
+    "endTime": "12:31:00.000",
+    "title": "Voltage excursion at Almaraz",
+    "events": ["Voltage drops to 379 kV (approaching critical threshold)"]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:31:30.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:31:30.000",
+    "endTime": "12:31:30.000",
+    "title": "Critical voltage depression",
+    "events": ["Multiple nodes below safe margins", "System approaching voltage collapse"]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:32:00.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:32:00.000",
+    "endTime": "12:32:10.000",
+    "title": "Phase 1: Dispersed renewable generation losses",
+    "events": [
+      "Solar photovoltaic (PV) installations begin disconnecting",
+      "Wind installations losing synchronism",
+      "Loss estimated: ~100 MW"
+    ]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:32:10.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:32:10.000",
+    "endTime": "12:32:40.000",
+    "title": "Phase 2: Cascading disconnections",
+    "events": [
+      "First plants: 58 MW lost",
+      "Second batch: 73 MW lost",
+      "Third batch: 102 MW lost",
+      "Renewable generation severely impacted"
+    ]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:32:47.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:32:47.000",
+    "endTime": "12:32:47.000",
+    "title": "Multiple simultaneous losses",
+    "events": [
+      "11.9 MW lost",
+      "20.0 MW lost",
+      "4.8 MW lost",
+      "10.0 MW lost",
+      "6.0 MW lost",
+      "Total: 52.7 MW"
+    ]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:32:55.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:32:55.000",
+    "endTime": "12:32:55.000",
+    "title": "Phase 2 summary losses",
+    "events": [
+      "Total identified: 208 MW (installations >1 MW)",
+      "Distributed generation (<1 MW): 317 MW",
+      "TOTAL PHASE: 525 MW lost in 55 seconds"
+    ]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:32:57.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:32:57.000",
+    "endTime": "12:32:57.000",
+    "title": "Example of voltage escalation",
+    "events": [
+      "SE Olmedilla: From 413 kV to 428 kV (in 57 seconds)",
+      "SE Arroyo San Serván: From 411 kV to 424 kV (in 57 seconds)"
+    ]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:33:00.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:33:00.000",
+    "endTime": "12:33:17.999",
+    "title": "Continuous escalation toward point of no return",
+    "events": [
+      "Multiple minor disconnections not individually documented",
+      "System approaching point of no return",
+      "First critical overvoltage alarms at multiple points"
+    ]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:33:18.102+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:33:18.102",
+    "endTime": "12:33:18.102",
+    "title": "Link installation disconnection",
+    "events": [
+      "Voltage measured: 247.6 kV (220 kV network, limit 245 kV)",
+      "Lost generation censored"
+    ]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:33:18.360+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:33:18.360",
+    "endTime": "12:33:18.360",
+    "title": "Start of stepped reduction",
+    "events": ["First reduction: -16 MW", "Previous generation censored"]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:33:18.380+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:33:18.380",
+    "endTime": "12:33:18.380",
+    "title": "FIRST CRITICAL DISCONNECTION DUE TO OVERVOLTAGE",
+    "events": [
+      "Voltage: 443.8 kV (EXCEEDS 435 kV LIMIT on 400 kV network)",
+      "UNSTOPPABLE CHAIN REACTION INITIATED",
+      "Plant and generation censored"
+    ]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:33:18.540+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:33:18.540",
+    "endTime": "12:33:18.540",
+    "title": "Plant disconnection with reactive absorption",
+    "events": ["Loss of active generation", "Loss of reactive absorption", "Values censored"]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:33:18.846+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:33:18.846",
+    "endTime": "12:33:18.846",
+    "title": "Link installation trip",
+    "events": ["Associated generation lost", "Values censored"]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:33:18.951+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:33:18.951",
+    "endTime": "12:33:18.951",
+    "title": "Additional link installation trip",
+    "events": ["Associated generation lost", "Values censored"]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:33:19.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:33:19.000",
+    "endTime": "12:33:19.000",
+    "title": "New reduction and massive cascade",
+    "events": ["New reduction -16 MW", "Massive cascading disconnections beginning"]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:33:19.040+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:33:19.040",
+    "endTime": "12:33:19.040",
+    "title": "132 kV overvoltage disconnection",
+    "events": ["132 kV voltage: 146.8 kV (11% overvoltage)", "Lost generation censored"]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:33:19.095+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:33:19.095",
+    "endTime": "12:33:19.095",
+    "title": "Installation disconnection",
+    "events": ["Lost curtailed generation", "Values censored"]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:33:19.131+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:33:19.131",
+    "endTime": "12:33:19.131",
+    "title": "Line trip due to overvoltage",
+    "events": ["14% overvoltage on 132 kV lines", "15% overvoltage on 220 kV lines"]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:33:19.252+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:33:19.252",
+    "endTime": "12:33:19.252",
+    "title": "Additional plant disconnection",
+    "events": ["Lost generation censored"]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:33:19.260+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:33:19.260",
+    "endTime": "12:33:19.260",
+    "title": "New reduction",
+    "events": ["Additional loss censored"]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:33:20.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:33:20.000",
+    "endTime": "12:33:23.000",
+    "title": "MASSIVE COLLAPSE",
+    "events": [
+      "Widespread cascading disconnections",
+      "Loss of thousands of MW in seconds",
+      "Overvoltages exceeding limits across the network",
+      "Start of disconnections due to under-frequency",
+      "System out of control"
+    ]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:33:23.260+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:33:23.260",
+    "endTime": "12:33:23.260",
+    "title": "Final complete installation disconnection",
+    "events": ["Total loss since 12:33:18.360"]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:33:23.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:33:23.000",
+    "endTime": "12:33:29.999",
+    "title": "FINAL COLLAPSE",
+    "events": [
+      "Dramatic frequency drop due to massive generation loss",
+      "Additional disconnections due to under-frequency",
+      "Opening of international interconnections",
+      "Voltage collapse across the peninsula"
+    ]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:33:30.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:33:30.000",
+    "endTime": "12:33:30.000",
+    "title": "TOTAL VOLTAGE ZERO",
+    "events": [
+      "Complete blackout Iberian peninsula",
+      "Disconnection from European system",
+      "Spain and Portugal in total blackout"
+    ]
+  },
+  {
+    "fullTimestamp": "2025-04-28T12:33:30.000+02:00",
+    "date": "28/04/2025",
+    "startTime": "12:33:30.000",
+    "endTime": "23:59:59.999",
+    "title": "Start of restoration work - Day 1",
+    "events": [
+      "Black start of power plants",
+      "Establishment of electrical islands",
+      "Gradual line reconnection",
+      "Prioritization of essential services"
+    ]
+  },
+  {
+    "fullTimestamp": "2025-04-29T00:00:00.000+02:00",
+    "date": "29/04/2025",
+    "startTime": "00:00:00.000",
+    "endTime": "14:35:59.999",
+    "title": "Continuation of stepped restoration - Day 2",
+    "events": [
+      "Progressive reconnection of consumers",
+      "Restoration of interconnections",
+      "Synchronization with European system"
+    ]
+  },
+  {
+    "fullTimestamp": "2025-04-29T14:36:00.000+02:00",
+    "date": "29/04/2025",
+    "startTime": "14:36:00.000",
+    "endTime": "14:36:00.000",
+    "title": "COMPLETE RESTORATION",
+    "events": ["System completely restored", "Total incident duration: 26 hours 3 minutes"]
+  }
+]
