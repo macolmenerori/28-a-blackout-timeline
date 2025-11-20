@@ -101,7 +101,12 @@ const Timeline: React.FC<TimelineProps> = ({ events }) => {
               borderColor: theme.palette.error.main
             }}
           >
-            <FlashOn sx={{ color: 'error.main', fontSize: '1.2rem' }} />
+            <FlashOn
+              sx={{
+                color: 'error.main',
+                fontSize: '1.2rem'
+              }}
+            />
           </Box>
 
           {/* Content card */}

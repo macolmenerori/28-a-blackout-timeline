@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
+import { Box, CircularProgress } from '@mui/material';
 import useSWR from 'swr';
 
 import Timeline from './Timeline/Timeline';
@@ -23,9 +24,12 @@ export function MainTimeline() {
     fetcher
   );
 
-  // TODO: Improve
   if (isLoading) {
-    return <div>Loading timeline...</div>;
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" minHeight="400px">
+        <CircularProgress size="3rem" />
+      </Box>
+    );
   }
 
   // TODO: Improve
