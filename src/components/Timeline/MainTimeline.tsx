@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { Box, CircularProgress } from '@mui/material';
 import useSWR from 'swr';
 
+import { ErrorApi } from '../ErrorMessage/ErrorApi/ErrorApi';
+
 import Timeline from './Timeline/Timeline';
 
 import { EventType } from '@/types/event';
@@ -19,7 +21,7 @@ export function MainTimeline() {
     return res.json();
   };
 
-  const { data, error, isLoading } = useSWR<EventType[]>(
+  const { data, error, isLoading, mutate } = useSWR<EventType[]>(
     `/data/timeline_${currentLanguage}.json`,
     fetcher
   );
@@ -32,9 +34,8 @@ export function MainTimeline() {
     );
   }
 
-  // TODO: Improve
   if (error) {
-    return <div>Error loading timeline: {error.message}</div>;
+    return <ErrorApi refetch={() => mutate()} />;
   }
 
   return <>{data && <Timeline events={data} />}</>;
