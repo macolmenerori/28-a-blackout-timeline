@@ -1,0 +1,228 @@
+.timelineContainer {
+  position: relative;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 400px;
+}
+
+.timelineLine {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  z-index: 1;
+}
+
+.timelineLine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.timelineLine::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.timelineItem {
+  position: relative;
+  margin-bottom: 50px;
+  width: 50%;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timelineItem.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timelineItem.left {
+  left: 0;
+  padding-right: 40px;
+  text-align: right;
+}
+
+.timelineItem.right {
+  left: 50%;
+  padding-left: 40px;
+  text-align: left;
+}
+
+.timelineItem.left .timelineDot {
+  right: -8px;
+}
+
+.timelineItem.right .timelineDot {
+  left: -8px;
+}
+
+.timelineDot {
+  position: absolute;
+  top: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 4px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.eventCard {
+  position: relative;
+  overflow: visible;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 1) 100%);
+}
+
+.timelineItem.left .eventCard {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.timelineItem.right .eventCard {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.timeHeader {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+}
+
+.eventsList {
+  padding: 0;
+  margin-top: 12px;
+}
+
+.eventItem {
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+  border-radius: 4px;
+  margin: 2px 0;
+}
+
+.eventItem:hover {
+  transform: translateX(4px);
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.timelineEnd {
+  position: relative;
+  text-align: center;
+  padding-top: 20px;
+  z-index: 2;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .timelineLine {
+    left: 20px;
+  }
+
+  .timelineItem {
+    width: calc(100% - 40px);
+    padding-left: 60px !important;
+    padding-right: 20px !important;
+    text-align: left !important;
+  }
+
+  .timelineItem.left,
+  .timelineItem.right {
+    left: 0;
+  }
+
+  .timelineItem.left .timelineDot,
+  .timelineItem.right .timelineDot {
+    left: -8px;
+    right: auto;
+  }
+
+  .timelineItem.left .eventCard,
+  .timelineItem.right .eventCard {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .timelineDot {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Tablet responsiveness */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .timelineContainer {
+    padding: 30px 15px;
+  }
+
+  .timelineItem.left {
+    padding-right: 30px;
+  }
+
+  .timelineItem.right {
+    padding-left: 30px;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .eventCard {
+    background: linear-gradient(135deg, rgba(30, 30, 30, 0.95) 0%, rgba(40, 40, 40, 1) 100%);
+  }
+
+  .eventItem:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .timelineItem {
+    transition: none;
+  }
+
+  .eventItem {
+    transition: none;
+  }
+
+  @keyframes slideIn {
+    from,
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
