@@ -12,6 +12,7 @@ This project documents the full timeline of the blackout that affected Spain and
 - **Package Manager**: PNPM 10.21.0
 - **Node Version**: >=24.0.0
 - **Code Quality**: ESLint 9.39.1 + Prettier 3.6.2
+- **Testing**: Vitest 4.0.14 + React Testing Library 16.3.0
 - **UI Library**: Material UI 7.3.5
 - **Styling**: Emotion (CSS-in-JS) 11.14.0
 - **Icons**: Material UI Icons 7.3.5
@@ -38,6 +39,8 @@ This project documents the full timeline of the blackout that affected Spain and
 │   │   └── locales/
 │   │       ├── en.json                     # English translations
 │   │       └── es.json                     # Spanish translations (default)
+│   ├── test/
+│   │   └── setup.ts                        # Vitest setup file (jest-dom matchers)
 │   └── ui/
 │       ├── theme/
 │       │   ├── theme.ts                    # Theme configuration & palettes
@@ -46,6 +49,7 @@ This project documents the full timeline of the blackout that affected Spain and
 │           └── MainLayoutProvider.tsx      # Layout wrapper with responsive padding
 ├── index.html                              # HTML template
 ├── vite.config.ts                          # Vite configuration (with path aliases)
+├── vitest.config.ts                        # Vitest configuration
 ├── tsconfig.json                           # TypeScript configuration (path aliases: @/*)
 └── package.json                            # Project dependencies and scripts
 ```
@@ -56,7 +60,10 @@ This project documents the full timeline of the blackout that affected Spain and
 - `pnpm build` - Build for production (runs TypeScript compiler and Vite build)
 - `pnpm preview` - Preview production build locally
 - `pnpm lint` - ESLint with auto-fix
-- `pnpm test` - Run tests (not yet configured)
+- `pnpm test` - Run tests once (CI mode)
+- `pnpm test:watch` - Run tests in watch mode
+- `pnpm test:ui` - Open Vitest UI in browser
+- `pnpm test:coverage` - Generate test coverage report
 - `prettify` - Prettier formatting
 - `types` - TypeScript compiler check
 
@@ -91,7 +98,7 @@ TypeScript is configured via `tsconfig.json` with strict type checking enabled.
 - **React**: React-specific linting rules and React Hooks rules
 - **TypeScript**: Full TypeScript ESLint support with recommended rules
 - **Accessibility**: JSX accessibility rules (`jsx-a11y`) with strict mode enabled
-- **Testing**: Jest DOM and Testing Library rules for better test quality
+- **Testing**: jest-dom and Testing Library rules for better test quality (compatible with Vitest)
 - **Import Sorting**: Automatic import organization with `simple-import-sort`
 - **Prettier Integration**: Prettier runs as an ESLint rule for consistent formatting
 
@@ -378,13 +385,143 @@ The Header component (`src/components/Header/Header.tsx`) includes:
 - ✅ Clean architecture with separated concerns
 - ✅ Integrated language selector in Header
 
+## Testing System
+
+The application uses Vitest as the testing framework, providing a fast and modern testing experience that integrates seamlessly with Vite.
+
+### Testing Stack
+
+**Core Dependencies:**
+- `vitest` (v4.0.14) - Fast unit test framework powered by Vite
+- `@vitest/ui` (v4.0.14) - Optional UI for viewing test results in browser
+- `@testing-library/react` (v16.3.0) - React component testing utilities
+- `@testing-library/user-event` (v14.6.1) - User interaction simulation
+- `@testing-library/jest-dom` (v6.9.1) - Custom jest-dom matchers for Vitest
+- `jsdom` (v27.2.0) - DOM implementation for testing React components
+
+### Configuration
+
+**Vitest Configuration** (`vitest.config.ts`):
+- Reuses Vite plugins (React, TypeScript path aliases)
+- Global test APIs enabled (`describe`, `it`, `expect` available globally)
+- jsdom environment for DOM testing
+- CSS imports enabled
+- Setup file: `src/test/setup.ts`
+
+**Test Setup** (`src/test/setup.ts`):
+- Imports `@testing-library/jest-dom/vitest` for custom matchers
+- Provides matchers like `toBeInTheDocument`, `toHaveTextContent`, etc.
+
+**TypeScript Configuration**:
+- Types include `vitest/globals` for global test APIs
+- Full TypeScript support in test files
+
+### Writing Tests
+
+**Test File Naming:**
+- `*.test.ts` or `*.test.tsx` - TypeScript test files
+- `*.spec.ts` or `*.spec.tsx` - Spec files (alternative convention)
+
+**Example Component Test:**
+```typescript
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { describe, expect, it } from 'vitest';
+
+import { MyComponent } from './MyComponent';
+
+describe('MyComponent', () => {
+  it('renders correctly', () => {
+    render(<MyComponent />);
+    expect(screen.getByText('Hello World')).toBeInTheDocument();
+  });
+
+  it('handles user interaction', async () => {
+    const user = userEvent.setup();
+    render(<MyComponent />);
+
+    await user.click(screen.getByRole('button'));
+    expect(screen.getByText('Clicked!')).toBeInTheDocument();
+  });
+});
+```
+
+**Testing with Context Providers:**
+```typescript
+import { render } from '@testing-library/react';
+import { AppProviders } from '@/providers/AppProviders';
+
+function renderWithProviders(ui: React.ReactElement) {
+  return render(<AppProviders>{ui}</AppProviders>);
+}
+
+// Use in tests
+renderWithProviders(<MyComponent />);
+```
+
+### Running Tests
+
+**Available Commands:**
+- `pnpm test` - Run all tests once (CI mode)
+- `pnpm test:watch` - Run tests in watch mode (re-runs on file changes)
+- `pnpm test:ui` - Open Vitest UI in browser for interactive testing
+- `pnpm test:coverage` - Generate test coverage report
+
+**Watch Mode Features:**
+- Automatically re-runs tests when files change
+- Smart test re-run (only affected tests)
+- Filter tests by filename or test name
+- Press `h` in terminal for help menu
+
+### Best Practices
+
+1. **Test Organization:**
+   - Place test files next to the component: `Component.tsx` + `Component.test.tsx`
+   - Use descriptive test names
+   - Group related tests with `describe` blocks
+
+2. **Testing React Components:**
+   - Use `render` from `@testing-library/react`
+   - Query elements by role, label, or text (not by implementation details)
+   - Prefer `screen` queries over destructuring render result
+   - Use `userEvent` for simulating user interactions
+
+3. **Assertions:**
+   - Use jest-dom matchers for DOM assertions: `toBeInTheDocument`, `toHaveClass`, etc.
+   - Use Vitest's built-in matchers for other assertions: `toBe`, `toEqual`, `toBeTruthy`, etc.
+
+4. **Async Testing:**
+   - Use `waitFor` for async updates
+   - Use `findBy` queries for elements that appear asynchronously
+   - Always `await` user interactions with `userEvent`
+
+### ESLint Integration
+
+ESLint is configured with testing-library rules to enforce best practices:
+- Prefer `screen` queries
+- Prefer `findBy` over `waitFor` + `getBy`
+- Prefer `userEvent` over `fireEvent`
+- No debugging utils in committed code
+
+### Key Features
+
+- ✅ Fast test execution powered by Vite
+- ✅ Hot Module Replacement for tests
+- ✅ Jest-compatible API (easy migration path)
+- ✅ TypeScript support out of the box
+- ✅ Path aliases work automatically (`@/*`)
+- ✅ React Testing Library integration
+- ✅ jest-dom custom matchers
+- ✅ Interactive UI for test exploration
+- ✅ Coverage reporting
+
 ## Next Steps
 
 Consider adding:
 
 - Timeline component for displaying events
 - Data structure for blackout events
-- Testing framework (Vitest, React Testing Library)
+- Unit tests for components and utilities
 - API integration for event data
 - Additional translations for new components and features
 - Additional Material UI components as needed
