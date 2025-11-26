@@ -12,6 +12,7 @@ This project documents the full timeline of the blackout that affected Spain and
 - **Package Manager**: PNPM 10.21.0
 - **Node Version**: >=24.0.0
 - **Code Quality**: ESLint 9.39.1 + Prettier 3.6.2
+- **Testing**: Vitest 4.0.14 + React Testing Library 16.3.0
 - **UI Library**: Material UI 7.3.5
 - **Styling**: Emotion (CSS-in-JS) 11.14.0
 - **Icons**: Material UI Icons 7.3.5
@@ -30,14 +31,23 @@ This project documents the full timeline of the blackout that affected Spain and
 │   ├── providers/
 │   │   └── AppProviders.tsx                # Root provider combining all providers
 │   ├── components/
-│   │   └── Header/
-│   │       └── Header.tsx                  # Header with theme toggle & language selector
+│   │   ├── Header/
+│   │   │   └── Header.tsx                  # Header with theme toggle & language selector
+│   │   └── Timeline/
+│   │       ├── MainTimeline.tsx            # Main timeline container with SWR data fetching
+│   │       └── MainTimeline.test.tsx       # Comprehensive test suite for MainTimeline
 │   ├── i18n/
 │   │   ├── i18n.ts                         # i18n configuration & initialization
 │   │   ├── I18nContext.tsx                 # i18n context & provider
 │   │   └── locales/
 │   │       ├── en.json                     # English translations
 │   │       └── es.json                     # Spanish translations (default)
+│   ├── test/
+│   │   ├── setup.ts                        # Vitest setup (global mocks & matchers)
+│   │   ├── utils/
+│   │   │   └── test-utils.tsx              # Reusable test utilities (renderWithProviders)
+│   │   └── mocks/
+│   │       └── timelineData.ts             # Mock timeline data for tests
 │   └── ui/
 │       ├── theme/
 │       │   ├── theme.ts                    # Theme configuration & palettes
@@ -46,6 +56,7 @@ This project documents the full timeline of the blackout that affected Spain and
 │           └── MainLayoutProvider.tsx      # Layout wrapper with responsive padding
 ├── index.html                              # HTML template
 ├── vite.config.ts                          # Vite configuration (with path aliases)
+├── vitest.config.ts                        # Vitest configuration
 ├── tsconfig.json                           # TypeScript configuration (path aliases: @/*)
 └── package.json                            # Project dependencies and scripts
 ```
@@ -56,7 +67,10 @@ This project documents the full timeline of the blackout that affected Spain and
 - `pnpm build` - Build for production (runs TypeScript compiler and Vite build)
 - `pnpm preview` - Preview production build locally
 - `pnpm lint` - ESLint with auto-fix
-- `pnpm test` - Run tests (not yet configured)
+- `pnpm test` - Run tests once (CI mode)
+- `pnpm test:watch` - Run tests in watch mode
+- `pnpm test:ui` - Open Vitest UI in browser
+- `pnpm test:coverage` - Generate test coverage report
 - `prettify` - Prettier formatting
 - `types` - TypeScript compiler check
 
@@ -91,7 +105,7 @@ TypeScript is configured via `tsconfig.json` with strict type checking enabled.
 - **React**: React-specific linting rules and React Hooks rules
 - **TypeScript**: Full TypeScript ESLint support with recommended rules
 - **Accessibility**: JSX accessibility rules (`jsx-a11y`) with strict mode enabled
-- **Testing**: Jest DOM and Testing Library rules for better test quality
+- **Testing**: jest-dom and Testing Library rules for better test quality (compatible with Vitest)
 - **Import Sorting**: Automatic import organization with `simple-import-sort`
 - **Prettier Integration**: Prettier runs as an ESLint rule for consistent formatting
 
@@ -378,14 +392,256 @@ The Header component (`src/components/Header/Header.tsx`) includes:
 - ✅ Clean architecture with separated concerns
 - ✅ Integrated language selector in Header
 
+## Testing System
+
+The application uses Vitest as the testing framework, providing a fast and modern testing experience that integrates seamlessly with Vite.
+
+### Testing Stack
+
+**Core Dependencies:**
+- `vitest` (v4.0.14) - Fast unit test framework powered by Vite
+- `@vitest/ui` (v4.0.14) - Optional UI for viewing test results in browser
+- `@testing-library/react` (v16.3.0) - React component testing utilities
+- `@testing-library/user-event` (v14.6.1) - User interaction simulation
+- `@testing-library/jest-dom` (v6.9.1) - Custom jest-dom matchers for Vitest
+- `jsdom` (v27.2.0) - DOM implementation for testing React components
+
+### Configuration
+
+**Vitest Configuration** (`vitest.config.ts`):
+- Reuses Vite plugins (React, TypeScript path aliases)
+- Global test APIs enabled (`describe`, `it`, `expect` available globally)
+- jsdom environment for DOM testing
+- CSS imports enabled
+- Setup file: `src/test/setup.ts`
+
+**Test Setup** (`src/test/setup.ts`):
+- Imports `@testing-library/jest-dom/vitest` for custom matchers
+- Provides matchers like `toBeInTheDocument`, `toHaveTextContent`, etc.
+- **Global SWR Mock**: `useSWR` mocked globally and exported as `mockUseSWR`
+- **window.matchMedia Mock**: For Material UI theme detection
+- **IntersectionObserver Mock**: For Timeline component animations
+- **Auto-cleanup**: Clears all mocks after each test with `afterEach` hook
+
+**TypeScript Configuration**:
+- Types include `vitest/globals` for global test APIs
+- Full TypeScript support in test files
+
+### Test Infrastructure
+
+**Global Mocks** (`src/test/setup.ts`):
+
+The test setup file provides global mocks available to all tests:
+
+1. **SWR Mock**:
+   ```typescript
+   import { mockUseSWR } from '@/test/setup';
+
+   mockUseSWR.mockReturnValue({
+     data: myData,
+     error: undefined,
+     isLoading: false,
+     mutate: vi.fn()
+   } as any);
+   ```
+
+2. **window.matchMedia**: Mocked for Material UI theme detection
+3. **IntersectionObserver**: Mocked for Timeline animations
+
+**Test Utilities** (`src/test/utils/test-utils.tsx`):
+
+- **`renderWithProviders(ui)`**: Custom render that wraps components with `AppProviders`
+- Includes I18nProvider, ThemeProvider, CssBaseline, and MainLayoutProvider
+- Re-exports all `@testing-library/react` utilities
+- Usage:
+  ```typescript
+  import { render, screen } from '@/test/utils/test-utils';
+
+  render(<MyComponent />);  // Automatically wrapped with providers
+  ```
+
+**Mock Data** (`src/test/mocks/timelineData.ts`):
+
+- `mockTimelineDataEs`: Spanish timeline events (3 sample events)
+- `mockTimelineDataEn`: English timeline events (3 sample events)
+- `getMockTimelineData(language)`: Helper to get data by language
+- Small subsets for fast, focused unit tests
+
+### Writing Tests
+
+**Test File Naming:**
+- `*.test.ts` or `*.test.tsx` - TypeScript test files
+- `*.spec.ts` or `*.spec.tsx` - Spec files (alternative convention)
+
+**Example Component Test:**
+```typescript
+import { describe, expect, it } from 'vitest';
+import userEvent from '@testing-library/user-event';
+
+import { MyComponent } from './MyComponent';
+
+import { render, screen } from '@/test/utils/test-utils';  // Use custom render
+
+describe('MyComponent', () => {
+  it('renders correctly', () => {
+    render(<MyComponent />);  // Automatically wrapped with AppProviders
+    expect(screen.getByText('Hello World')).toBeInTheDocument();
+  });
+
+  it('handles user interaction', async () => {
+    const user = userEvent.setup();
+    render(<MyComponent />);
+
+    await user.click(screen.getByRole('button'));
+    expect(screen.getByText('Clicked!')).toBeInTheDocument();
+  });
+});
+```
+
+**Testing Components with SWR:**
+```typescript
+import { describe, expect, it, vi } from 'vitest';
+
+import { MyComponent } from './MyComponent';
+
+import { mockUseSWR } from '@/test/setup';  // Import global mock
+import { render, screen } from '@/test/utils/test-utils';
+
+describe('MyComponent', () => {
+  it('displays loading state', () => {
+    mockUseSWR.mockReturnValue({
+      data: undefined,
+      error: undefined,
+      isLoading: true,
+      mutate: vi.fn()
+    } as any);
+
+    render(<MyComponent />);
+    expect(screen.getByRole('progressbar')).toBeInTheDocument();
+  });
+
+  it('displays data when loaded', () => {
+    mockUseSWR.mockReturnValue({
+      data: { title: 'Test' },
+      error: undefined,
+      isLoading: false,
+      mutate: vi.fn()
+    } as any);
+
+    render(<MyComponent />);
+    expect(screen.getByText('Test')).toBeInTheDocument();
+  });
+});
+```
+
+### Running Tests
+
+**Available Commands:**
+- `pnpm test` - Run all tests once (CI mode)
+- `pnpm test:watch` - Run tests in watch mode (re-runs on file changes)
+- `pnpm test:ui` - Open Vitest UI in browser for interactive testing
+- `pnpm test:coverage` - Generate test coverage report
+
+**Watch Mode Features:**
+- Automatically re-runs tests when files change
+- Smart test re-run (only affected tests)
+- Filter tests by filename or test name
+- Press `h` in terminal for help menu
+
+### Best Practices
+
+1. **Test Organization:**
+   - Place test files next to the component: `Component.tsx` + `Component.test.tsx`
+   - Use descriptive test names
+   - Group related tests with `describe` blocks
+
+2. **Testing React Components:**
+   - Use `render` from `@testing-library/react`
+   - Query elements by role, label, or text (not by implementation details)
+   - Prefer `screen` queries over destructuring render result
+   - Use `userEvent` for simulating user interactions
+
+3. **Assertions:**
+   - Use jest-dom matchers for DOM assertions: `toBeInTheDocument`, `toHaveClass`, etc.
+   - Use Vitest's built-in matchers for other assertions: `toBe`, `toEqual`, `toBeTruthy`, etc.
+
+4. **Async Testing:**
+   - Use `waitFor` for async updates
+   - Use `findBy` queries for elements that appear asynchronously
+   - Always `await` user interactions with `userEvent`
+
+### ESLint Integration
+
+ESLint is configured with testing-library rules to enforce best practices:
+- Prefer `screen` queries
+- Prefer `findBy` over `waitFor` + `getBy`
+- Prefer `userEvent` over `fireEvent`
+- No debugging utils in committed code
+
+### Key Features
+
+- ✅ Fast test execution powered by Vite
+- ✅ Hot Module Replacement for tests
+- ✅ Jest-compatible API (easy migration path)
+- ✅ TypeScript support out of the box
+- ✅ Path aliases work automatically (`@/*`)
+- ✅ React Testing Library integration
+- ✅ jest-dom custom matchers
+- ✅ Interactive UI for test exploration
+- ✅ Coverage reporting
+- ✅ **Global SWR mocking** - configured once, available everywhere
+- ✅ **Custom render utilities** - automatic provider wrapping
+- ✅ **Reusable mock data** - standardized test data
+- ✅ **Environment mocks** - matchMedia, IntersectionObserver ready
+
+### Example Test Suite
+
+See `src/components/Timeline/MainTimeline.test.tsx` for a comprehensive example with:
+- Loading state tests
+- Success state tests (multiple languages)
+- Error state tests
+- User interaction tests (refetch functionality)
+- SWR configuration tests
+- Edge case handling
+- **16 passing tests** covering all component states
+
+## Data Fetching with SWR
+
+**Dependencies:**
+- `swr` (v2.3.6) - React Hooks for Data Fetching
+
+**Usage Pattern:**
+
+The `MainTimeline` component demonstrates the standard SWR usage pattern:
+
+```typescript
+import useSWR from 'swr';
+
+const fetcher = async (url: string) => {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Failed to fetch: ${res.status}`);
+  return res.json();
+};
+
+const { data, error, isLoading, mutate } = useSWR<EventType[]>(
+  `/data/timeline_${currentLanguage}.json`,
+  fetcher
+);
+```
+
+**Testing SWR Components:**
+
+SWR is mocked globally in tests. See the Testing System section for details.
+
 ## Next Steps
 
 Consider adding:
 
-- Timeline component for displaying events
-- Data structure for blackout events
-- Testing framework (Vitest, React Testing Library)
-- API integration for event data
+- Additional component tests following the MainTimeline pattern
+- Integration tests for full user workflows
+- Visual regression tests with Playwright or Chromatic
+- E2E tests for critical paths
 - Additional translations for new components and features
 - Additional Material UI components as needed
 - SEO optimization with react-helmet or similar
+- Performance monitoring and analytics

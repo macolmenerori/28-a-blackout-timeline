@@ -23,7 +23,7 @@
     "paths": {
       "@/*": ["src/*"] // This allows imports like: import Button from '@/components/Button'
     },
-    "types": ["node", "react", "react-dom", "jest", "@testing-library/jest-dom"]
+    "types": ["node", "react", "react-dom", "vitest/globals", "@testing-library/jest-dom"]
   },
   "exclude": ["node_modules", "dist", "cypress"],
   "include": ["src/**/*.ts", "src/**/*.tsx"]
