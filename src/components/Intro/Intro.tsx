@@ -1,10 +1,9 @@
-import { useTranslation } from 'react-i18next';
+import { Trans } from 'react-i18next';
 
-import { Box, Card, CardContent, Typography, useTheme } from '@mui/material';
+import { Box, Card, CardContent, Link, Typography, useTheme } from '@mui/material';
 
 export function Intro() {
   const theme = useTheme();
-  const { t } = useTranslation();
 
   return (
     <Box
@@ -38,15 +37,23 @@ export function Intro() {
               marginBottom: theme.spacing(2)
             }}
           >
-            {t('components.intro.title')}
+            <Trans i18nKey="components.intro.title" />
           </Typography>
           <Typography
             variant="body1"
             sx={{
               color: theme.palette.text.primary
             }}
+            style={{ whiteSpace: 'pre-line' }}
           >
-            {t('components.intro.body')}
+            <Trans i18nKey="components.intro.body" style={{ whiteSpace: 'pre-line' }} />
+            <Link
+              href="https://www.lamoncloa.gob.es/consejodeministros/resumenes/Documents/2025/Informe-no-confidencial-Comite-de-analisis-28A.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Trans i18nKey="components.intro.reportLink" />
+            </Link>
           </Typography>
         </CardContent>
       </Card>
