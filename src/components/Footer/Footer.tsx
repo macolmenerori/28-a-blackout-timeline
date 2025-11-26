@@ -1,0 +1,62 @@
+import { Trans } from 'react-i18next';
+
+import CopyrightIcon from '@mui/icons-material/Copyright';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import { Divider, Link, Stack, Typography } from '@mui/material';
+
+export function Footer() {
+  return (
+    <Stack
+      direction={{ xs: 'column', sm: 'row' }}
+      spacing={1}
+      divider={<Divider orientation="vertical" flexItem />}
+      sx={{
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingBottom: 2
+      }}
+    >
+      <Stack direction="row" spacing={1} alignItems="center">
+        <CopyrightIcon fontSize="small" />
+        <Typography>
+          <Link
+            href="https://miguelangelcolmenero.es/"
+            target="_blank"
+            rel="noopener"
+            sx={{ color: 'text.primary' }}
+          >
+            macolmenerori
+          </Link>{' '}
+          {new Date().getFullYear()}
+        </Typography>
+      </Stack>
+      <Typography>
+        <Trans />
+        <Link
+          href="https://www.lamoncloa.gob.es/consejodeministros/resumenes/Documents/2025/Informe-no-confidencial-Comite-de-analisis-28A.pdf"
+          target="_blank"
+          rel="noopener"
+          sx={{ color: 'text.primary' }}
+        >
+          Moncloa
+        </Link>
+      </Typography>
+      <Link
+        href="https://github.com/macolmenerori/cyl-polen-tracker"
+        target="_blank"
+        rel="noopener"
+        sx={{ display: 'flex', alignItems: 'center' }}
+        data-testid="github-link"
+      >
+        <GitHubIcon sx={{ color: 'text.primary' }} />
+      </Link>
+      <iframe
+        src="https://github.com/sponsors/macolmenerori/button"
+        title="Sponsor macolmenerori"
+        height="32"
+        width="114"
+        style={{ border: 0, borderRadius: '6px' }}
+      ></iframe>
+    </Stack>
+  );
+}
