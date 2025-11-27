@@ -15,7 +15,7 @@
   },
   "scripts": {
     "dev": "vite-react-ssg dev",
-    "build": "tsc -b && vite-react-ssg build",
+    "build": "tsx scripts/generate-sitemap.ts && tsc -b && vite-react-ssg build",
     "prettify": "prettier -w --log-level=silent src/",
     "preview": "vite preview",
     "lint": "eslint --fix ./src/",
@@ -56,6 +56,7 @@
     "jsdom": "^27.2.0",
     "prettier": "^3.6.2",
     "react-helmet-async": "^2.0.5",
+    "tsx": "^4.20.6",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.4",
     "vite": "^7.2.2",

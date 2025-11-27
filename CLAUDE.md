@@ -9,6 +9,7 @@ This project documents the full timeline of the blackout that affected Spain and
 - **Frontend Framework**: React 19.2.0
 - **Language**: TypeScript 5.9.3
 - **Build Tool**: Vite 7.2.2
+- **TypeScript Execution**: tsx 4.20.6
 - **Package Manager**: PNPM 10.21.0
 - **Node Version**: >=24.0.0
 - **Code Quality**: ESLint 9.39.1 + Prettier 3.6.2
@@ -20,6 +21,7 @@ This project documents the full timeline of the blackout that affected Spain and
 - **Internationalization**: i18next 25.6.2 + react-i18next 16.3.1
 - **Static Site Generation**: vite-react-ssg 0.8.9
 - **SEO**: react-helmet-async 2.0.5
+- **Data Fetching**: SWR 2.3.6
 
 ## Project Structure
 
@@ -36,7 +38,9 @@ This project documents the full timeline of the blackout that affected Spain and
 │   │   ├── Header/
 │   │   │   └── Header.tsx                  # Header with theme toggle & language selector
 │   │   ├── SEO/
-│   │   │   └── SEOHead.tsx                 # SEO meta tags with react-helmet-async
+│   │   │   ├── SEOHead.tsx                 # SEO meta tags with react-helmet-async
+│   │   │   ├── SEOHead.test.tsx            # SEO component test suite
+│   │   │   └── JsonLd.tsx                  # JSON-LD structured data (WebSite, Event, BreadcrumbList)
 │   │   ├── Intro/
 │   │   │   └── Intro.tsx                   # Introduction card with translations
 │   │   ├── Footer/
@@ -62,6 +66,14 @@ This project documents the full timeline of the blackout that affected Spain and
 │       │   └── ThemeContext.tsx            # Theme context & provider
 │       └── MainLayout/
 │           └── MainLayoutProvider.tsx      # Layout wrapper with responsive padding
+├── scripts/
+│   └── generate-sitemap.ts                 # Build script to update sitemap.xml timestamps
+├── public/
+│   ├── robots.txt                          # Search engine crawling directives
+│   ├── sitemap.xml                         # XML sitemap (auto-updated on build)
+│   └── data/
+│       ├── timeline_es.json                # Spanish timeline data
+│       └── timeline_en.json                # English timeline data
 ├── index.html                              # HTML template
 ├── vite.config.ts                          # Vite configuration (with path aliases)
 ├── vitest.config.ts                        # Vitest configuration
@@ -72,7 +84,7 @@ This project documents the full timeline of the blackout that affected Spain and
 ## Available Scripts
 
 - `pnpm dev` - Start SSG development server on port 3000 (with SSR)
-- `pnpm build` - Build static site (runs TypeScript compiler and vite-react-ssg build)
+- `pnpm build` - Build static site (generates sitemap, runs TypeScript compiler and vite-react-ssg build)
 - `pnpm preview` - Preview production build locally
 - `pnpm lint` - ESLint with auto-fix
 - `pnpm test` - Run tests once (CI mode)
@@ -736,6 +748,218 @@ const { data, error, isLoading, mutate } = useSWR<EventType[]>(
 
 SWR is mocked globally in tests. See the Testing System section for details.
 
+## SEO Optimization
+
+The application implements comprehensive SEO optimization for improved search engine visibility and social media sharing.
+
+### Overview
+
+**Production URL**: `https://apagon-28-a.miguelangelcolmenero.es/`
+
+The SEO implementation includes:
+- JSON-LD structured data (3 schemas)
+- XML sitemap with auto-updated timestamps
+- Robots.txt configuration
+- Enhanced meta tags and Open Graph
+- Language alternates (hreflang)
+- Canonical URLs
+
+### Components
+
+**SEOHead Component** (`src/components/SEO/SEOHead.tsx`):
+- Integrates react-helmet-async for meta tag management
+- Language-specific titles and descriptions (ES/EN)
+- Canonical URL declaration
+- Hreflang alternates (es, en, x-default)
+- Robots meta tag (index, follow)
+- Enhanced Open Graph tags (og:url, og:locale, og:locale:alternate)
+- Twitter Card meta tags (summary_large_image)
+- Theme-color and color-scheme meta tags
+- Imports and renders JsonLd component
+
+**JsonLd Component** (`src/components/SEO/JsonLd.tsx`):
+- Generates schema.org structured data
+- Three JSON-LD schemas:
+  - **WebSite**: Identifies the site (name, URL, description, languages)
+  - **Event**: Documents the April 28, 2025 blackout event (startDate, location, description)
+  - **BreadcrumbList**: Improves SERP appearance
+- Language-aware content (ES/EN)
+- Dynamically updates when language changes
+
+### Static Files
+
+**robots.txt** (`public/robots.txt`):
+- Allows all search engines to crawl the site
+- Sets crawl-delay to 1 second
+- References sitemap location
+
+**sitemap.xml** (`public/sitemap.xml`):
+- Single URL entry for the single-page application
+- Includes lastmod timestamp (auto-updated on build)
+- Monthly change frequency
+- Priority 1.0
+- Hreflang alternates:
+  - `hreflang="es"` → `https://apagon-28-a.miguelangelcolmenero.es/`
+  - `hreflang="en"` → `https://apagon-28-a.miguelangelcolmenero.es/?lang=en`
+  - `hreflang="x-default"` → `https://apagon-28-a.miguelangelcolmenero.es/`
+
+### Build Automation
+
+**Sitemap Generator** (`scripts/generate-sitemap.ts`):
+- TypeScript build script using Node.js fs module
+- Runs automatically before each build
+- Updates sitemap.xml lastmod timestamp to current date
+- Integrated into build script: `tsx scripts/generate-sitemap.ts && tsc -b && vite-react-ssg build`
+
+**Dependencies:**
+- `tsx` (v4.20.6) - Execute TypeScript build scripts
+
+### Meta Tags Summary
+
+The SEOHead component injects the following meta tags:
+
+**Basic:**
+- `<html lang="es">` or `<html lang="en">`
+- `<title>` - Language-specific
+- `<meta name="description">` - Language-specific
+- `<meta name="keywords">` - Language-specific
+
+**SEO:**
+- `<link rel="canonical">` - https://apagon-28-a.miguelangelcolmenero.es/
+- `<link rel="alternate" hreflang="es">`
+- `<link rel="alternate" hreflang="en">`
+- `<link rel="alternate" hreflang="x-default">`
+- `<meta name="robots" content="index, follow">`
+
+**Open Graph:**
+- `og:type` - website
+- `og:title` - Language-specific
+- `og:description` - Language-specific
+- `og:url` - Canonical URL
+- `og:locale` - es_ES or en_US
+- `og:locale:alternate` - Alternate language
+
+**Twitter Card:**
+- `twitter:card` - summary_large_image
+- `twitter:title` - Language-specific
+- `twitter:description` - Language-specific
+
+**Theme:**
+- `theme-color` - #1976d2 (Material UI primary)
+- `color-scheme` - light dark
+
+### JSON-LD Schemas
+
+**WebSite Schema:**
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Cronología del Apagón del 28-A",
+  "url": "https://apagon-28-a.miguelangelcolmenero.es/",
+  "description": "Cronología completa del apagón masivo...",
+  "inLanguage": ["es", "en"]
+}
+```
+
+**Event Schema:**
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Apagón del 28-A",
+  "description": "Apagón eléctrico masivo...",
+  "startDate": "2025-04-28",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "location": {
+    "@type": "Place",
+    "name": "España y Portugal",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": ["ES", "PT"]
+    }
+  }
+}
+```
+
+**BreadcrumbList Schema:**
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": "https://apagon-28-a.miguelangelcolmenero.es/"
+    }
+  ]
+}
+```
+
+### Testing
+
+**Test Suite** (`src/components/SEO/SEOHead.test.tsx`):
+- 4 passing tests
+- Verifies component renders without errors
+- Validates HelmetProvider integration
+- Confirms JsonLd component integration
+
+### SSG Behavior
+
+**During Build:**
+- Spanish content pre-rendered in HTML for SEO
+- Meta tags from react-helmet-async injected client-side
+- JSON-LD schemas injected client-side
+- Sitemap and robots.txt copied to dist/
+
+**Runtime:**
+- Meta tags dynamically update when language changes
+- JSON-LD schemas regenerate with current language
+- All SEO tags managed by react-helmet-async
+
+### Validation
+
+After deployment, validate SEO implementation:
+
+1. **Google Rich Results Test**: https://search.google.com/test/rich-results
+   - Validates JSON-LD structured data
+
+2. **Schema.org Validator**: https://validator.schema.org/
+   - Confirms schema correctness
+
+3. **Google Search Console**:
+   - Submit sitemap.xml
+   - Monitor indexing status
+   - Track search performance
+
+4. **Bing Webmaster Tools**:
+   - Submit sitemap.xml
+   - Verify site ownership
+
+### Key Features
+
+- ✅ Canonical URL declaration
+- ✅ Language alternates (hreflang)
+- ✅ Robots meta tag and robots.txt
+- ✅ XML sitemap with auto-updated timestamps
+- ✅ JSON-LD structured data (WebSite, Event, BreadcrumbList)
+- ✅ Enhanced Open Graph tags
+- ✅ Twitter Card meta tags
+- ✅ Language-aware content (ES/EN)
+- ✅ SSR-safe implementation
+- ✅ Build automation
+- ✅ Test coverage
+
+### Future Enhancements
+
+- Add Open Graph image (og:image) - 1200x630px recommended
+- Submit sitemap to Google Search Console and Bing Webmaster Tools
+- Monitor SEO performance and search rankings
+- Consider adding FAQ schema if FAQ section is added
+- Consider AggregateRating schema if user reviews are added
+
 ## Next Steps
 
 Consider adding:
@@ -748,6 +972,7 @@ Consider adding:
 - Additional Material UI components as needed
 - ✅ ~~SEO optimization with react-helmet or similar~~ (Implemented with react-helmet-async)
 - ✅ ~~Static site generation for better SEO and performance~~ (Implemented with vite-react-ssg)
-- Advanced SEO features (sitemap.xml, structured data enhancements, robots.txt optimization)
+- ✅ ~~Advanced SEO features (sitemap.xml, structured data enhancements, robots.txt optimization)~~ (Implemented)
+- Open Graph image for social media sharing (1200x630px recommended)
 - Performance monitoring and analytics
 - PWA support (service worker, offline functionality)
