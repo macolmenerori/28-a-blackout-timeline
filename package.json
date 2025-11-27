@@ -1,6 +1,6 @@
 {
   "name": "28-a-blackout-timeline",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "type": "module",
   "description": "Full timeline of the blackout that affected Spain and Portugal on April 28, 2025.",
   "engines": {
@@ -24,7 +24,7 @@
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
-    "verify": "pnpm lint && pnpm prettify && pnpm types && pnpm audit --prod && pnpm build"
+    "verify": "pnpm lint && pnpm prettify && pnpm types && pnpm audit --prod && pnpm test && pnpm build"
   },
   "keywords": [
     "blackout",
@@ -67,15 +67,15 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "@fontsource/roboto": "^5.2.8",
+    "@fontsource/roboto": "^5.2.9",
     "@macolmenerori/component-library": "^0.0.1",
     "@mui/icons-material": "^7.3.5",
     "@mui/material": "^7.3.5",
-    "i18next": "^25.6.2",
+    "i18next": "^25.6.3",
     "i18next-browser-languagedetector": "^8.2.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-i18next": "^16.3.1",
+    "react-i18next": "^16.3.5",
     "swr": "^2.3.6"
   }
 }
