@@ -21,6 +21,11 @@ export function I18nProvider({ children }: I18nProviderProps) {
 
   // Get initial language from localStorage or i18n current language
   const getInitialLanguage = (): Language => {
+    // SSG/SSR Guard
+    if (typeof window === 'undefined') {
+      return 'es'; // Default to Spanish for SSG
+    }
+
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored === 'es' || stored === 'en') {
       return stored;
@@ -37,7 +42,9 @@ export function I18nProvider({ children }: I18nProviderProps) {
     (lang: Language) => {
       setLanguage(lang);
       i18n.changeLanguage(lang);
-      localStorage.setItem(STORAGE_KEY, lang);
+      if (typeof window !== 'undefined') {
+        localStorage.setItem(STORAGE_KEY, lang);
+      }
     },
     [i18n]
   );
