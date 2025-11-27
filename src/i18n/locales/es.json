@@ -11,6 +11,9 @@
     "errorApi": {
       "message": "Hubo un error al cargar la cronología",
       "reload": "Recargar"
+    },
+    "timeline": {
+      "endOfTimeline": "Fin de eventos"
     }
   },
   "languages": {

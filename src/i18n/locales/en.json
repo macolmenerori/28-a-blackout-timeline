@@ -11,6 +11,9 @@
     "errorApi": {
       "message": "There was an error loading the timeline",
       "reload": "Reload"
+    },
+    "timeline": {
+      "endOfTimeline": "End of events"
     }
   },
   "languages": {

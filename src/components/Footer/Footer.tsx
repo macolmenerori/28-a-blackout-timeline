@@ -11,7 +11,8 @@ export function Footer() {
       sx={{
         justifyContent: 'center',
         alignItems: 'center',
-        paddingBottom: 2
+        paddingBottom: 2,
+        marginTop: 2
       }}
     >
       <Stack direction="row" spacing={1} alignItems="center">

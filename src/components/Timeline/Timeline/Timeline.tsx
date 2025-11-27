@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { AccessTime, Edit, FlashOn, QueryStats, Warning } from '@mui/icons-material';
 import {
@@ -25,6 +26,7 @@ interface TimelineProps {
 
 const Timeline: React.FC<TimelineProps> = ({ events }) => {
   const theme = useTheme();
+  const { t } = useTranslation();
   const [visibleItems, setVisibleItems] = useState<Set<number>>(new Set());
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -211,7 +213,7 @@ const Timeline: React.FC<TimelineProps> = ({ events }) => {
             border: `1px solid ${alpha(theme.palette.divider, 0.2)}`
           }}
         >
-          Fin del registro de eventos
+          {t('components.timeline.endOfTimeline')}
         </Typography>
       </Box>
     </Box>
