@@ -7,5 +7,11 @@ export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   server: {
     port: 3000
+  },
+  ssr: {
+    noExternal: ['@macolmenerori/component-library', 'react-helmet-async']
+  },
+  ssgOptions: {
+    formatting: 'minify'
   }
 });

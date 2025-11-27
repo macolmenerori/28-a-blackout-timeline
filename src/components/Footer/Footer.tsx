@@ -1,5 +1,3 @@
-import { Trans } from 'react-i18next';
-
 import CopyrightIcon from '@mui/icons-material/Copyright';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { Divider, Link, Stack, Typography } from '@mui/material';
@@ -31,7 +29,6 @@ export function Footer() {
         </Typography>
       </Stack>
       <Typography>
-        <Trans />
         <Link
           href="https://www.lamoncloa.gob.es/consejodeministros/resumenes/Documents/2025/Informe-no-confidencial-Comite-de-analisis-28A.pdf"
           target="_blank"

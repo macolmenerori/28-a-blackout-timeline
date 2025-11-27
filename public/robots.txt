@@ -1,0 +1,9 @@
+# robots.txt for 28-A Blackout Timeline
+# Allow all search engines to crawl the site
+
+User-agent: *
+Allow: /
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://apagon-28-a.miguelangelcolmenero.es/sitemap.xml
