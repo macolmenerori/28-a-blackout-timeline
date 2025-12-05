@@ -58,7 +58,7 @@
     "react-helmet-async": "^2.0.5",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.46.4",
+    "typescript-eslint": "^8.48.1",
     "vite": "^7.2.4",
     "vite-react-ssg": "^0.8.9",
     "vite-tsconfig-paths": "^5.1.4",
