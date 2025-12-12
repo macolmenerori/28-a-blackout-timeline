@@ -9,6 +9,7 @@
 # production
 /dist
 *.tsbuildinfo
+.vite-react-ssg-temp
 
 # misc
 .DS_Store
