@@ -52,7 +52,7 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
-    "eslint-plugin-testing-library": "^7.13.5",
+    "eslint-plugin-testing-library": "^7.13.6",
     "jsdom": "^27.2.0",
     "prettier": "^3.7.4",
     "react-helmet-async": "^2.0.5",
