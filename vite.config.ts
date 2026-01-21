@@ -23,7 +23,7 @@ export default defineConfig({
           site: 'datadoghq.eu',
           service: '28-a-blackout-timeline',
           env: 'prod',
-          version: '1.0.0',
+          version: '1.1.0',
           sessionSampleRate: 100,
           sessionReplaySampleRate: 20,
           trackUserInteractions: true,
