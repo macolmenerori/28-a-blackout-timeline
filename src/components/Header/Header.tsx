@@ -1,5 +1,7 @@
-import { ThemeSwitch } from '@macolmenerori/component-library';
+import { ThemeSwitch } from '@macolmenerori/component-library/theme-switch';
 import { AppBar, Box, MenuItem, Select, SelectChangeEvent, Toolbar } from '@mui/material';
+
+import '@macolmenerori/component-library/theme-switch-css';
 
 import { useI18n } from '@/i18n/I18nContext';
 import { useTheme } from '@/ui/theme/ThemeContext';
