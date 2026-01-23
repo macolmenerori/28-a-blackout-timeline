@@ -18,8 +18,8 @@ importers:
         specifier: ^5.2.9
         version: 5.2.9
       '@macolmenerori/component-library':
-        specifier: ^1.1.2
-        version: 1.1.2(react-dom@19.2.3(react@19.2.3))(react-markdown@10.1.0(@types/react@19.2.9)(react@19.2.3))(react@19.2.3)(remark-gfm@4.0.1)
+        specifier: ^1.2.0
+        version: 1.2.0(react-dom@19.2.3(react@19.2.3))(react-markdown@10.1.0(@types/react@19.2.9)(react@19.2.3))(react@19.2.3)(remark-gfm@4.0.1)
       '@mui/icons-material':
         specifier: ^7.3.7
         version: 7.3.7(@mui/material@7.3.7(@emotion/react@11.14.0(@types/react@19.2.9)(react@19.2.3))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.2.9)(react@19.2.3))(@types/react@19.2.9)(react@19.2.3))(@types/react@19.2.9)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(@types/react@19.2.9)(react@19.2.3)
@@ -725,8 +725,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@macolmenerori/component-library@1.1.2':
-    resolution: {integrity: sha512-IgduZ1sieQITAPCrlM1xz7ir0fEE9aVDrQ7e2m54gO9a4h5FQm/6+ao3Sp/q18/1k+firJGajy1dX8oS6BgWpw==}
+  '@macolmenerori/component-library@1.2.0':
+    resolution: {integrity: sha512-0vVJUerk3vbjcnmU7ymByvTyYxrZbOUITEk5tIMQ3m/8QP+WIHtnJAUZw3y6aTuLUxZRsxCjYrMYtd7qID0r6g==}
     engines: {node: '>=24.0.0 <25.0.0'}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
@@ -3652,7 +3652,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@macolmenerori/component-library@1.1.2(react-dom@19.2.3(react@19.2.3))(react-markdown@10.1.0(@types/react@19.2.9)(react@19.2.3))(react@19.2.3)(remark-gfm@4.0.1)':
+  '@macolmenerori/component-library@1.2.0(react-dom@19.2.3(react@19.2.3))(react-markdown@10.1.0(@types/react@19.2.9)(react@19.2.3))(react@19.2.3)(remark-gfm@4.0.1)':
     dependencies:
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
