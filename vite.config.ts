@@ -1,6 +1,12 @@
+import { readFileSync } from 'node:fs';
+
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
+
+const pkg = JSON.parse(readFileSync('./package.json', 'utf-8')) as {
+  version: string;
+};
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -23,7 +29,7 @@ export default defineConfig({
           site: 'datadoghq.eu',
           service: '28-a-blackout-timeline',
           env: 'prod',
-          version: '1.1.0',
+          version: '${pkg.version}',
           sessionSampleRate: 100,
           sessionReplaySampleRate: 20,
           trackUserInteractions: true,
@@ -40,6 +46,9 @@ export default defineConfig({
       }
     }
   ],
+  define: {
+    __APP_VERSION__: JSON.stringify(pkg.version)
+  },
   server: {
     port: 3000
   },
