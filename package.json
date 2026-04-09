@@ -24,7 +24,7 @@
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
-    "verify": "pnpm lint && pnpm prettify && pnpm types && pnpm audit --prod && pnpm test && pnpm build",
+    "verify": "pnpm audit --prod && pnpm lint && pnpm prettify && pnpm types && pnpm test && pnpm build",
     "release": "npx tsx scripts/release.ts"
   },
   "keywords": [
@@ -58,8 +58,8 @@
     "prettier": "^3.8.1",
     "react-helmet-async": "^3.0.0",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.58.0",
+    "typescript": "^6.0.2",
+    "typescript-eslint": "^8.58.1",
     "vite": "^7.3.2",
     "vite-react-ssg": "^0.9.0",
     "vite-tsconfig-paths": "^6.1.1",
