@@ -117,7 +117,8 @@ const Timeline: React.FC<TimelineProps> = ({ events }) => {
             elevation={visibleItems.has(index) ? 6 : 2}
             sx={{
               transition: 'all 0.3s ease',
-              borderLeft: `4px solid ${theme.palette.error.main}`
+              borderLeft: `4px solid ${theme.palette.error.main}`,
+              backgroundColor: theme.palette.background.paper
             }}
           >
             <CardContent>

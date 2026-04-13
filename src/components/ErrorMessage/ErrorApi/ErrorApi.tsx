@@ -9,7 +9,12 @@ interface ErrorApiProps {
 export function ErrorApi({ refetch }: ErrorApiProps) {
   const { t } = useTranslation();
   return (
-    <Box textAlign="center" margin={4}>
+    <Box
+      sx={{
+        textAlign: 'center',
+        margin: 4
+      }}
+    >
       <Typography>{t('components.errorApi.message')}</Typography>
       <Button variant="contained" onClick={() => refetch()} sx={{ marginTop: 2 }}>
         {t('components.errorApi.reload')}
