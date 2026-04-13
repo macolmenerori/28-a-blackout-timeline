@@ -90,7 +90,6 @@
 .eventCard {
   position: relative;
   overflow: visible;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 1) 100%);
 }
 
 .timelineItem.left .eventCard {
@@ -194,17 +193,6 @@
 
   .timelineItem.right {
     padding-left: 30px;
-  }
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .eventCard {
-    background: linear-gradient(135deg, rgba(30, 30, 30, 0.95) 0%, rgba(40, 40, 40, 1) 100%);
-  }
-
-  .eventItem:hover {
-    background-color: rgba(255, 255, 255, 0.05);
   }
 }
 
