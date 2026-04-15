@@ -1,20 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { AccessTime, Edit, FlashOn, QueryStats, Warning } from '@mui/icons-material';
-import {
-  alpha,
-  Box,
-  Card,
-  CardContent,
-  Chip,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Typography,
-  useTheme
-} from '@mui/material';
+import AccessTime from '@mui/icons-material/AccessTime';
+import Edit from '@mui/icons-material/Edit';
+import FlashOn from '@mui/icons-material/FlashOn';
+import QueryStats from '@mui/icons-material/QueryStats';
+import Warning from '@mui/icons-material/Warning';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Chip from '@mui/material/Chip';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import { alpha, useTheme } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 
 import styles from './Timeline.module.css';
 

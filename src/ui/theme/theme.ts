@@ -1,5 +1,4 @@
-import { PaletteMode } from '@mui/material';
-import { createTheme, Theme } from '@mui/material/styles';
+import { createTheme, PaletteMode, Theme } from '@mui/material/styles';
 
 // Define the color palette for light mode
 export const lightPalette = {

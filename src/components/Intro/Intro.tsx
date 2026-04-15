@@ -1,6 +1,11 @@
 import { useTranslation } from 'react-i18next';
 
-import { Box, Card, CardContent, Link, Typography, useTheme } from '@mui/material';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Link from '@mui/material/Link';
+import { useTheme } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 
 export function Intro() {
   const theme = useTheme();

@@ -8,9 +8,11 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/test/setup.ts',
+    pool: 'threads',
+    isolate: false,
     server: {
       deps: {
-        inline: ['@macolmenerori/component-library']
+        inline: ['@macolmenerori/component-library', '@mui/material', '@mui/icons-material']
       }
     }
   }
