@@ -1,8 +1,7 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
-import { PaletteMode } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
-import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
+import { PaletteMode, ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 
 import { createAppTheme } from './theme';
 
