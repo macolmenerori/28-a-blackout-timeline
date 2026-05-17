@@ -10,7 +10,7 @@ This project documents the full timeline of the blackout that affected Spain and
 - **Language**: TypeScript 5.9.3
 - **Build Tool**: Vite 7.2.2
 - **TypeScript Execution**: tsx 4.20.6
-- **Package Manager**: PNPM 10.21.0
+- **Package Manager**: PNPM 11.1.2
 - **Node Version**: >=24.0.0
 - **Code Quality**: ESLint 9.39.1 + Prettier 3.6.2
 - **Testing**: Vitest 4.0.14 + React Testing Library 16.3.0
