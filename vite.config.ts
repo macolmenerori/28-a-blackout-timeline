@@ -53,7 +53,7 @@ export default defineConfig({
     port: 3000
   },
   ssr: {
-    noExternal: ['@macolmenerori/component-library', 'react-helmet-async']
+    noExternal: ['@macolmenerori/component-library', 'react-helmet-async', 'react-cookie-consent']
   },
   ssgOptions: {
     formatting: 'minify'

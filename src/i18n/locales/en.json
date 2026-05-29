@@ -14,6 +14,11 @@
     },
     "timeline": {
       "endOfTimeline": "End of events"
+    },
+    "cookieConsent": {
+      "accept": "Accept",
+      "decline": "Decline",
+      "message": "This website uses cookies to enhance the user experience. By clicking 'Accept', you consent to the use of cookies. You can decline the use of cookies by clicking 'Decline'."
     }
   },
   "languages": {
