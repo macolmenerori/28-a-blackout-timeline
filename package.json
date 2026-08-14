@@ -78,6 +78,6 @@
     "react-cookie-consent": "^10.0.2",
     "react-dom": "^19.2.8",
     "react-i18next": "^17.0.11",
-    "swr": "^2.5.0"
+    "swr": "^2.5.1"
   }
 }
