@@ -112,6 +112,7 @@ The development server is configured to run on **port 3000** (see `vite.config.t
 **Path Aliases**: Configured with `vite-tsconfig-paths` plugin to support TypeScript path aliases (vite.config.ts:3,7).
 
 **SSG Configuration** (vite.config.ts:11-16):
+
 - `ssr.noExternal`: Includes `@macolmenerori/component-library` and `react-helmet-async` for SSR compatibility
 - `ssgOptions.formatting`: Set to `'minify'` for optimized HTML output
 
@@ -122,6 +123,7 @@ The development server is configured to run on **port 3000** (see `vite.config.t
 TypeScript is configured via `tsconfig.json` with strict type checking enabled.
 
 **Path Aliases**: The `@/*` alias maps to `src/*` for cleaner imports (tsconfig.json).
+
 - Example: `import { useTheme } from '@/ui/theme/ThemeContext'`
 
 ### Code Quality
@@ -168,6 +170,7 @@ The theme system consists of three main parts:
 ### Theme Configuration Details
 
 **Light Mode Palette:**
+
 - Primary: `#1976d2` (Material Blue)
 - Secondary: `#26a69a` (Teal)
 - Background Default: `#fafafa`
@@ -175,6 +178,7 @@ The theme system consists of three main parts:
 - Text Primary: `#212121`, Secondary: `#757575`, Tertiary: `#9e9e9e`
 
 **Dark Mode Palette:**
+
 - Primary: `#90caf9` (Light Blue)
 - Secondary: `#4db6ac` (Light Teal)
 - Background Default: `#121212`
@@ -182,6 +186,7 @@ The theme system consists of three main parts:
 - Text Primary: `#ffffff`, Secondary: `rgba(255,255,255,0.7)`
 
 **Common Settings:**
+
 - Typography: Roboto font family
 - Border Radius: 8px (consistent rounded corners)
 - Component Overrides:
@@ -191,20 +196,24 @@ The theme system consists of three main parts:
 ### Theme Context Features
 
 **Initial Theme Detection:**
+
 1. Checks `localStorage` for saved preference
 2. Falls back to system preference (`prefers-color-scheme`)
 3. Defaults to 'light' if no preference found
 
 **Theme Persistence:**
+
 - Automatically saves theme choice to `localStorage`
 - Persists across browser sessions
 
 **System Preference Listening:**
+
 - Listens for OS-level theme changes
 - Only updates if user hasn't manually set a preference
 - Properly cleans up event listeners on unmount
 
 **Custom Hook:**
+
 ```typescript
 const { mode, toggleTheme } = useTheme();
 // mode: 'light' | 'dark'
@@ -216,6 +225,7 @@ const { mode, toggleTheme } = useTheme();
 **Purpose:** Provides consistent layout spacing accounting for fixed AppBar.
 
 **Features:**
+
 - Desktop: 64px top padding (standard MUI AppBar height)
 - Mobile (<600px): 56px top padding (mobile AppBar height)
 - Full viewport height (`minHeight: '100vh'`)
@@ -224,6 +234,7 @@ const { mode, toggleTheme } = useTheme();
 ### Provider Composition
 
 **Order (outside to inside):**
+
 1. `I18nProvider` - Internationalization context
 2. `ThemeProvider` - Theme context and MUI theme
 3. `CssBaseline` - MUI global style reset
@@ -235,6 +246,7 @@ const { mode, toggleTheme } = useTheme();
 ### Usage Examples
 
 **Toggle Theme:**
+
 ```typescript
 import { useTheme } from '@/ui/theme/ThemeContext';
 
@@ -250,6 +262,7 @@ function ThemeToggle() {
 ```
 
 **Access MUI Theme:**
+
 ```typescript
 import { Box, useTheme } from '@mui/material';
 
@@ -309,11 +322,13 @@ The i18n system consists of three main parts:
 ### i18n Configuration Details
 
 **Dependencies:**
+
 - `i18next` (v25.6.2) - Core i18n framework
 - `react-i18next` (v16.3.1) - React bindings for i18next
 - `i18next-browser-languagedetector` (v8.2.0) - Automatic language detection
 
 **Configuration:**
+
 - Fallback language: Spanish ('es')
 - Namespace: 'translation' (default)
 - Detection order: localStorage → browser language → fallback
@@ -321,15 +336,18 @@ The i18n system consists of three main parts:
 ### i18n Context Features
 
 **Initial Language Detection:**
+
 1. Checks `localStorage` for saved preference (key: 'app-language')
 2. Falls back to i18next detected language
 3. Defaults to 'es' (Spanish) if no preference found
 
 **Language Persistence:**
+
 - Automatically saves language choice to `localStorage`
 - Persists across browser sessions
 
 **Custom Hook:**
+
 ```typescript
 const { language, changeLanguage } = useI18n();
 // language: 'es' | 'en'
@@ -362,6 +380,7 @@ Translations are organized in JSON files with nested keys:
 ### Usage Examples
 
 **Using translations in components:**
+
 ```typescript
 import { useTranslation } from 'react-i18next';
 
@@ -378,6 +397,7 @@ function MyComponent() {
 ```
 
 **Changing language:**
+
 ```typescript
 import { useI18n } from '@/i18n/I18nContext';
 
@@ -393,6 +413,7 @@ function LanguageSwitcher() {
 ```
 
 **With interpolation:**
+
 ```typescript
 // Translation: "welcome": "Welcome, {{name}}!"
 const { t } = useTranslation();
@@ -402,6 +423,7 @@ return <p>{t('welcome', { name: 'User' })}</p>;
 ### Integration with Header Component
 
 The Header component (`src/components/Header/Header.tsx`) includes:
+
 - Language selector dropdown (ES/EN)
 - Integrated with `useI18n()` hook
 - Syncs with i18n system and localStorage
@@ -431,6 +453,7 @@ The app is statically generated with Spanish content (default language for the p
 ### Implementation Details
 
 **Entry Point** (`src/main.tsx`):
+
 ```typescript
 import { ViteReactSSG } from 'vite-react-ssg/single-page';
 
@@ -442,11 +465,13 @@ export const createRoot = ViteReactSSG(
 ```
 
 **SSR Guards**: All browser-dependent features are protected with `typeof window !== 'undefined'` checks:
+
 - `src/ui/theme/ThemeContext.tsx` - localStorage and window.matchMedia guards
 - `src/i18n/I18nContext.tsx` - localStorage guards
 - `src/i18n/i18n.ts` - LanguageDetector only used in browser, Spanish forced during SSG
 
 **SEO Component** (`src/components/SEO/SEOHead.tsx`):
+
 - Language-specific meta tags (title, description, keywords)
 - Open Graph tags for social sharing
 - Theme color and color-scheme meta tags
@@ -455,16 +480,19 @@ export const createRoot = ViteReactSSG(
 ### Build Process
 
 **Development**:
+
 ```bash
 pnpm dev  # SSR-enabled dev server with hot reload
 ```
 
 **Production Build**:
+
 ```bash
 pnpm build  # Generates static HTML in dist/
 ```
 
 **Output**:
+
 - Pre-rendered HTML (~27.6 KB) with inline CSS
 - Spanish content in HTML for SEO
 - Client-side JavaScript bundles (~337 KB)
@@ -493,6 +521,7 @@ return <h1>{t('components.intro.title')}</h1>;
 ```
 
 **Initial State**: The app pre-renders with:
+
 - Language: Spanish (`'es'`)
 - Theme: Light mode
 - No localStorage dependencies during build
@@ -500,6 +529,7 @@ return <h1>{t('components.intro.title')}</h1>;
 ### Deployment
 
 The `dist/` folder contains a fully static site that can be deployed to:
+
 - **Vercel**: `vercel`
 - **Netlify**: `netlify deploy --prod`
 - **GitHub Pages**: Copy dist/ contents
@@ -514,6 +544,7 @@ The application uses Vitest as the testing framework, providing a fast and moder
 ### Testing Stack
 
 **Core Dependencies:**
+
 - `vitest` (v4.0.14) - Fast unit test framework powered by Vite
 - `@vitest/ui` (v4.0.14) - Optional UI for viewing test results in browser
 - `@testing-library/react` (v16.3.0) - React component testing utilities
@@ -524,6 +555,7 @@ The application uses Vitest as the testing framework, providing a fast and moder
 ### Configuration
 
 **Vitest Configuration** (`vitest.config.ts`):
+
 - Reuses Vite plugins (React, TypeScript path aliases)
 - Global test APIs enabled (`describe`, `it`, `expect` available globally)
 - jsdom environment for DOM testing
@@ -531,6 +563,7 @@ The application uses Vitest as the testing framework, providing a fast and moder
 - Setup file: `src/test/setup.ts`
 
 **Test Setup** (`src/test/setup.ts`):
+
 - Imports `@testing-library/jest-dom/vitest` for custom matchers
 - Provides matchers like `toBeInTheDocument`, `toHaveTextContent`, etc.
 - **Global SWR Mock**: `useSWR` mocked globally and exported as `mockUseSWR`
@@ -539,6 +572,7 @@ The application uses Vitest as the testing framework, providing a fast and moder
 - **Auto-cleanup**: Clears all mocks after each test with `afterEach` hook
 
 **TypeScript Configuration**:
+
 - Types include `vitest/globals` for global test APIs
 - Full TypeScript support in test files
 
@@ -549,6 +583,7 @@ The application uses Vitest as the testing framework, providing a fast and moder
 The test setup file provides global mocks available to all tests:
 
 1. **SWR Mock**:
+
    ```typescript
    import { mockUseSWR } from '@/test/setup';
 
@@ -569,6 +604,7 @@ The test setup file provides global mocks available to all tests:
 - Includes I18nProvider, ThemeProvider, CssBaseline, and MainLayoutProvider
 - Re-exports all `@testing-library/react` utilities
 - Usage:
+
   ```typescript
   import { render, screen } from '@/test/utils/test-utils';
 
@@ -585,10 +621,12 @@ The test setup file provides global mocks available to all tests:
 ### Writing Tests
 
 **Test File Naming:**
+
 - `*.test.ts` or `*.test.tsx` - TypeScript test files
 - `*.spec.ts` or `*.spec.tsx` - Spec files (alternative convention)
 
 **Example Component Test:**
+
 ```typescript
 import { describe, expect, it } from 'vitest';
 import userEvent from '@testing-library/user-event';
@@ -614,6 +652,7 @@ describe('MyComponent', () => {
 ```
 
 **Testing Components with SWR:**
+
 ```typescript
 import { describe, expect, it, vi } from 'vitest';
 
@@ -652,12 +691,14 @@ describe('MyComponent', () => {
 ### Running Tests
 
 **Available Commands:**
+
 - `pnpm test` - Run all tests once (CI mode)
 - `pnpm test:watch` - Run tests in watch mode (re-runs on file changes)
 - `pnpm test:ui` - Open Vitest UI in browser for interactive testing
 - `pnpm test:coverage` - Generate test coverage report
 
 **Watch Mode Features:**
+
 - Automatically re-runs tests when files change
 - Smart test re-run (only affected tests)
 - Filter tests by filename or test name
@@ -688,6 +729,7 @@ describe('MyComponent', () => {
 ### ESLint Integration
 
 ESLint is configured with testing-library rules to enforce best practices:
+
 - Prefer `screen` queries
 - Prefer `findBy` over `waitFor` + `getBy`
 - Prefer `userEvent` over `fireEvent`
@@ -712,6 +754,7 @@ ESLint is configured with testing-library rules to enforce best practices:
 ### Example Test Suite
 
 See `src/components/Timeline/MainTimeline.test.tsx` for a comprehensive example with:
+
 - Loading state tests
 - Success state tests (multiple languages)
 - Error state tests
@@ -723,6 +766,7 @@ See `src/components/Timeline/MainTimeline.test.tsx` for a comprehensive example 
 ## Data Fetching with SWR
 
 **Dependencies:**
+
 - `swr` (v2.3.6) - React Hooks for Data Fetching
 
 **Usage Pattern:**
@@ -754,9 +798,10 @@ The application implements comprehensive SEO optimization for improved search en
 
 ### Overview
 
-**Production URL**: `https://apagon-28-a.miguelangelcolmenero.es/`
+**Production URL**: `https://apagon-28-a.miguelcolmenero.net/`
 
 The SEO implementation includes:
+
 - JSON-LD structured data (3 schemas)
 - XML sitemap with auto-updated timestamps
 - Robots.txt configuration
@@ -767,6 +812,7 @@ The SEO implementation includes:
 ### Components
 
 **SEOHead Component** (`src/components/SEO/SEOHead.tsx`):
+
 - Integrates react-helmet-async for meta tag management
 - Language-specific titles and descriptions (ES/EN)
 - Canonical URL declaration
@@ -778,6 +824,7 @@ The SEO implementation includes:
 - Imports and renders JsonLd component
 
 **JsonLd Component** (`src/components/SEO/JsonLd.tsx`):
+
 - Generates schema.org structured data
 - Three JSON-LD schemas:
   - **WebSite**: Identifies the site (name, URL, description, languages)
@@ -789,29 +836,33 @@ The SEO implementation includes:
 ### Static Files
 
 **robots.txt** (`public/robots.txt`):
+
 - Allows all search engines to crawl the site
 - Sets crawl-delay to 1 second
 - References sitemap location
 
 **sitemap.xml** (`public/sitemap.xml`):
+
 - Single URL entry for the single-page application
 - Includes lastmod timestamp (auto-updated on build)
 - Monthly change frequency
 - Priority 1.0
 - Hreflang alternates:
-  - `hreflang="es"` → `https://apagon-28-a.miguelangelcolmenero.es/`
-  - `hreflang="en"` → `https://apagon-28-a.miguelangelcolmenero.es/?lang=en`
-  - `hreflang="x-default"` → `https://apagon-28-a.miguelangelcolmenero.es/`
+  - `hreflang="es"` → `https://apagon-28-a.miguelcolmenero.net/`
+  - `hreflang="en"` → `https://apagon-28-a.miguelcolmenero.net/?lang=en`
+  - `hreflang="x-default"` → `https://apagon-28-a.miguelcolmenero.net/`
 
 ### Build Automation
 
 **Sitemap Generator** (`scripts/generate-sitemap.ts`):
+
 - TypeScript build script using Node.js fs module
 - Runs automatically before each build
 - Updates sitemap.xml lastmod timestamp to current date
 - Integrated into build script: `tsx scripts/generate-sitemap.ts && tsc -b && vite-react-ssg build`
 
 **Dependencies:**
+
 - `tsx` (v4.20.6) - Execute TypeScript build scripts
 
 ### Meta Tags Summary
@@ -819,19 +870,22 @@ The SEO implementation includes:
 The SEOHead component injects the following meta tags:
 
 **Basic:**
+
 - `<html lang="es">` or `<html lang="en">`
 - `<title>` - Language-specific
 - `<meta name="description">` - Language-specific
 - `<meta name="keywords">` - Language-specific
 
 **SEO:**
-- `<link rel="canonical">` - https://apagon-28-a.miguelangelcolmenero.es/
+
+- `<link rel="canonical">` - <https://apagon-28-a.miguelcolmenero.net/>
 - `<link rel="alternate" hreflang="es">`
 - `<link rel="alternate" hreflang="en">`
 - `<link rel="alternate" hreflang="x-default">`
 - `<meta name="robots" content="index, follow">`
 
 **Open Graph:**
+
 - `og:type` - website
 - `og:title` - Language-specific
 - `og:description` - Language-specific
@@ -840,29 +894,33 @@ The SEOHead component injects the following meta tags:
 - `og:locale:alternate` - Alternate language
 
 **Twitter Card:**
+
 - `twitter:card` - summary_large_image
 - `twitter:title` - Language-specific
 - `twitter:description` - Language-specific
 
 **Theme:**
+
 - `theme-color` - #1976d2 (Material UI primary)
 - `color-scheme` - light dark
 
 ### JSON-LD Schemas
 
 **WebSite Schema:**
+
 ```json
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "Cronología del Apagón del 28-A",
-  "url": "https://apagon-28-a.miguelangelcolmenero.es/",
+  "url": "https://apagon-28-a.miguelcolmenero.net/",
   "description": "Cronología completa del apagón masivo...",
   "inLanguage": ["es", "en"]
 }
 ```
 
 **Event Schema:**
+
 ```json
 {
   "@context": "https://schema.org",
@@ -883,6 +941,7 @@ The SEOHead component injects the following meta tags:
 ```
 
 **BreadcrumbList Schema:**
+
 ```json
 {
   "@context": "https://schema.org",
@@ -892,7 +951,7 @@ The SEOHead component injects the following meta tags:
       "@type": "ListItem",
       "position": 1,
       "name": "Inicio",
-      "item": "https://apagon-28-a.miguelangelcolmenero.es/"
+      "item": "https://apagon-28-a.miguelcolmenero.net/"
     }
   ]
 }
@@ -901,6 +960,7 @@ The SEOHead component injects the following meta tags:
 ### Testing
 
 **Test Suite** (`src/components/SEO/SEOHead.test.tsx`):
+
 - 4 passing tests
 - Verifies component renders without errors
 - Validates HelmetProvider integration
@@ -909,12 +969,14 @@ The SEOHead component injects the following meta tags:
 ### SSG Behavior
 
 **During Build:**
+
 - Spanish content pre-rendered in HTML for SEO
 - Meta tags from react-helmet-async injected client-side
 - JSON-LD schemas injected client-side
 - Sitemap and robots.txt copied to dist/
 
 **Runtime:**
+
 - Meta tags dynamically update when language changes
 - JSON-LD schemas regenerate with current language
 - All SEO tags managed by react-helmet-async
@@ -923,10 +985,10 @@ The SEOHead component injects the following meta tags:
 
 After deployment, validate SEO implementation:
 
-1. **Google Rich Results Test**: https://search.google.com/test/rich-results
+1. **Google Rich Results Test**: <https://search.google.com/test/rich-results>
    - Validates JSON-LD structured data
 
-2. **Schema.org Validator**: https://validator.schema.org/
+2. **Schema.org Validator**: <https://validator.schema.org/>
    - Confirms schema correctness
 
 3. **Google Search Console**:

@@ -1,6 +1,6 @@
 {
   "name": "28-a-blackout-timeline",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "type": "module",
   "description": "Full timeline of the blackout that affected Spain and Portugal on April 28, 2025.",
   "engines": {
@@ -8,7 +8,7 @@
   },
   "author": "macolmenerori",
   "license": "MIT",
-  "packageManager": "pnpm@11.7.0",
+  "packageManager": "pnpm@11.22.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/macolmenerori/28-a-blackout-timeline"
@@ -40,12 +40,12 @@
     "@eslint/js": "^10.0.1",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.2",
-    "@testing-library/user-event": "^14.6.4",
+    "@testing-library/user-event": "^14.6.5",
     "@types/node": "^26.2.0",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
     "@vitejs/plugin-react": "^5.2.0",
-    "@vitest/ui": "^4.1.10",
+    "@vitest/ui": "^4.1.11",
     "eslint": "^10.8.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-jest-dom": "^5.10.1",
@@ -61,9 +61,9 @@
     "typescript": "^6.0.2",
     "typescript-eslint": "^8.67.0",
     "vite": "^7.3.5",
-    "vite-react-ssg": "^0.9.0",
+    "vite-react-ssg": "^0.9.2",
     "vite-tsconfig-paths": "^6.1.1",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.11"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

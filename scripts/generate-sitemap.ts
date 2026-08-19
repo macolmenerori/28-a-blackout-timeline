@@ -16,7 +16,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const SITEMAP_PATH = join(__dirname, '..', 'public', 'sitemap.xml');
-const SITE_URL = 'https://apagon-28-a.miguelangelcolmenero.es/';
+const SITE_URL = 'https://apagon-28-a.miguelcolmenero.net/';
 
 /**
  * Get current date in ISO format (YYYY-MM-DD)

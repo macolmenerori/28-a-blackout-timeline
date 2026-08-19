@@ -4,7 +4,7 @@ On April 28, 2025 there was an electricity blackout on the Iberian Peninsula. On
 
 This web application is a timeline summarizing the events detailed on the official report.
 
-Check out the application at [https://apagon-28-a.miguelangelcolmenero.es](https://apagon-28-a.miguelangelcolmenero.es)
+Check out the application at [https://apagon-28-a.miguelcolmenero.net](https://apagon-28-a.miguelcolmenero.net)
 
 ## Tech Stack
 
