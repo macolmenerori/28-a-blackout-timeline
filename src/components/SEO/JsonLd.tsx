@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
  * - BreadcrumbList: Improves SERP appearance
  */
 
-const SITE_URL = 'https://apagon-28-a.miguelangelcolmenero.es/';
+const SITE_URL = 'https://apagon-28-a.miguelcolmenero.net/';
 
 interface WebSiteSchema {
   '@context': string;

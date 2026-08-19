@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { JsonLd } from './JsonLd';
 
-const CANONICAL_URL = 'https://apagon-28-a.miguelangelcolmenero.es/';
+const CANONICAL_URL = 'https://apagon-28-a.miguelcolmenero.net/';
 
 export function SEOHead() {
   const { i18n } = useTranslation();
